@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
    <children>
       <AnchorPane layoutX="309.0" layoutY="234.0" prefHeight="81.0" prefWidth="140.0">
          <children>
@@ -15,7 +15,7 @@
             <PasswordField fx:id="PasswordInput" alignment="CENTER" layoutY="64.0" prefHeight="25.0" prefWidth="182.0" promptText="Wpisz hasło" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="309.0" layoutY="338.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0">
+      <AnchorPane layoutX="309.0" layoutY="372.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0">
          <children>
             <Button fx:id="Login" alignment="CENTER" contentDisplay="TOP" layoutY="23.0" mnemonicParsing="false" text="Zaloguj się" textAlignment="CENTER" />
             <Button fx:id="Register" alignment="CENTER" layoutX="100.0" layoutY="23.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" text="Zarejstruj się" />
@@ -26,5 +26,6 @@
             <Font size="36.0" />
          </font>
       </Label>
+      <Button layoutX="374.0" layoutY="339.0" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>
