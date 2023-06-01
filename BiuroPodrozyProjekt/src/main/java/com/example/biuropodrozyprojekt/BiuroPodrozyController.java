@@ -3,6 +3,8 @@ package com.example.biuropodrozyprojekt;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class BiuroPodrozyController {
     @FXML
@@ -10,6 +12,9 @@ public class BiuroPodrozyController {
 
     @FXML
     private Label loginText;
+
+    @FXML
+    private ImageView image;
 
     @FXML
     public void onHelloButtonClick() {
@@ -20,5 +25,8 @@ public class BiuroPodrozyController {
     public void onRegisterButtonClick(ActionEvent e) {
         loginText.setText("Rejestracja");
     }
+
+
+
 
 }

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
+    <children>
+        <VBox prefHeight="605.0" prefWidth="375.0" style="-fx-background-color: #81BECE;">
+            <effect>
+                <Blend mode="SRC_ATOP" />
+            </effect>
+            <children>
+                <AnchorPane prefHeight="473.0" prefWidth="332.0">
+                    <children>
+                        <Circle layoutX="196.0" layoutY="245.0" radius="130.0" stroke="BLACK" strokeType="INSIDE">
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                            <fill>
+                                <RadialGradient centerX="0.505524861878453" centerY="0.5521327014218009" radius="1.0">
+                                    <stops>
+                                        <Stop>
+                                            <color>
+                                                <Color red="0.28935185074806213" green="0.5719013810157776" blue="0.6578947305679321" />
+                                            </color>
+                                        </Stop>
+                                        <Stop offset="1.0">
+                                            <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                            </color>
+                                        </Stop>
+                                    </stops>
+                                </RadialGradient>
+                            </fill>
+                        </Circle>
+                        <ImageView fx:id="image" fitHeight="178.0" fitWidth="183.0" layoutX="108.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../Images/2714854771586786105-512.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="21.0" layoutY="367.0" prefHeight="89.0" prefWidth="354.0" text="Travel Agency Management System" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma Bold" size="19.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </children>
+        </VBox>
+        <AnchorPane layoutX="487.0" layoutY="391.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0">
+            <children>
+                <Button fx:id="Login" alignment="CENTER" contentDisplay="TOP" layoutY="23.0" mnemonicParsing="false" text="Zaloguj się" textAlignment="CENTER" />
+                <Button fx:id="Register" alignment="CENTER" layoutX="100.0" layoutY="23.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" text="Zarejstruj się" />
+            </children>
+        </AnchorPane>
+        <Label fx:id="loginText" alignment="CENTER" layoutX="298.0" layoutY="167.0" prefHeight="53.0" prefWidth="560.0" text="Register" textAlignment="CENTER">
+            <font>
+                <Font name="Tahoma Bold" size="39.0" />
+            </font>
+            <textFill>
+                <LinearGradient endX="0.12796208530805686" endY="1.0" startX="0.17061611374407584">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.0117647061124444" green="0.3843137323856354" blue="0.501960813999176" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Label>
+        <AnchorPane layoutX="487.0" layoutY="220.0" prefHeight="195.0" prefWidth="182.0">
+            <children>
+                <TextField fx:id="LoginInput" alignment="CENTER" layoutY="20.0" prefHeight="25.0" prefWidth="182.0" promptText="Wpisz login" />
+                <PasswordField fx:id="PasswordInput" alignment="CENTER" layoutY="64.0" prefHeight="25.0" prefWidth="183.0" promptText="Wpisz hasło" />
+            <TextField alignment="TOP_CENTER" layoutY="147.0" prefHeight="25.0" prefWidth="183.0" promptText="Wpisz e-mail" />
+            </children>
+        </AnchorPane>
+      <PasswordField alignment="TOP_CENTER" layoutX="487.0" layoutY="327.0" prefHeight="25.0" prefWidth="183.0" promptText="Wpisz ponownie hasło" />
+    </children>
+</AnchorPane>
