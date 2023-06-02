@@ -27,21 +27,33 @@ public class BiuroPodrozyController {
 
 
    @FXML
-    public void onRegisterButtonClick(ActionEvent e) {
-        loginText.setText("Rejestracja");
+    public void onRegisterButtonClick(ActionEvent e) throws IOException {
+       // loginText.setText("Rejestracja");
+        startRejestracja();
+
     }
 
 
     //chlop na tutorialu dodawal niby to w Controllerze
-    public void startRejestracja() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(BiuroPodrozyApplication.class.getResource("Rejestracja.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        Stage stage = new Stage();
-        stage.setTitle("Travel Agency Management System");
-        stage.getIcons().add(new Image(("palma.png")));
-        stage.setScene(scene);
-        stage.show();
-    }
+    @FXML
+    public void startRejestracja() throws IOException {
+       // FXMLLoader fxmlLoaderRegister = new FXMLLoader(BiuroPodrozyApplication.class.getResource("Rejestracja.fxml"));
+      //  Scene registerScene = new Scene(fxmlLoaderRegister.load(), 800, 600);
+      //  Stage stage = new Stage();
+      //  stage.setTitle("Travel Agency Management System");
+      //  stage.getIcons().add(new Image(("palma.png")));
+      //  stage.setScene(registerScene);
+     //   stage.show();
+
+            Parent root = FXMLLoader.load(getClass().getResource("Rejestracja.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
+
+        }
+
 
 
     }
