@@ -94,5 +94,10 @@
             <PasswordField fx:id="PasswordInput" alignment="CENTER" layoutY="64.0" prefHeight="25.0" prefWidth="182.0" promptText="Wpisz hasło" />
          </children>
       </AnchorPane>
+      <Label fx:id="errorMessageLabel" alignment="CENTER" layoutX="375.0" layoutY="403.0" prefHeight="119.0" prefWidth="425.0" textFill="#e85050">
+         <font>
+            <Font name="Tahoma Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

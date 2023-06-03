@@ -10,6 +10,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BiuroPodrozyApplication extends Application {
+
+    public static final String usernameAdmin = "admin";
+    public static final String passwordAdmin = "admin";
+    public static final String usernameClient = "client";
+    public static final String passwordClient = "client";
+
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
