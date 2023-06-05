@@ -12,62 +12,46 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
+<AnchorPane fx:id="AnchorLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
    <children>
-      <VBox prefHeight="605.0" prefWidth="375.0" style="-fx-background-color: #81BECE;">
+      <VBox fx:id="VboxLeftMenu" prefHeight="596.0" prefWidth="372.0" styleClass="VboxLeftLogin" stylesheets="@style.css">
          <effect>
             <Blend mode="SRC_ATOP" />
          </effect>
          <children>
-            <AnchorPane prefHeight="473.0" prefWidth="332.0">
+            <AnchorPane prefHeight="473.0" prefWidth="408.0" styleClass="BackgroundLogin" stylesheets="@style.css">
                <children>
-                  <Circle layoutX="196.0" layoutY="245.0" radius="130.0" stroke="BLACK" strokeType="INSIDE">
+                  <VBox prefHeight="596.0" prefWidth="432.0" styleClass="Background" stylesheets="@style.css" AnchorPane.bottomAnchor="-123.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0" />
+                  <Label layoutX="21.0" layoutY="367.0" prefHeight="89.0" prefWidth="404.0" text="Travel Agency Management System" textAlignment="CENTER">
+                     <font>
+                        <Font name="Tahoma Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Circle fill="#ffffff00" layoutX="196.0" layoutY="245.0" radius="130.0" stroke="BLACK" strokeWidth="2.0">
                      <effect>
                         <DropShadow />
                      </effect>
-                     <fill>
-                        <RadialGradient centerX="0.505524861878453" centerY="0.5521327014218009" radius="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.28935185074806213" green="0.5719013810157776" blue="0.6578947305679321" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="1.0" green="1.0" blue="1.0" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </RadialGradient>
-                     </fill>
                   </Circle>
                   <ImageView fx:id="image" fitHeight="178.0" fitWidth="183.0" layoutX="108.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Images/2714854771586786105-512.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="21.0" layoutY="367.0" prefHeight="89.0" prefWidth="354.0" text="Travel Agency Management System" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Tahoma Bold" size="19.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </children>
       </VBox>
-      <AnchorPane layoutX="487.0" layoutY="309.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0">
+      <AnchorPane layoutX="521.0" layoutY="309.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0">
          <children>
             <Button fx:id="Login" alignment="CENTER" contentDisplay="TOP" layoutY="23.0" mnemonicParsing="false" onAction="#switchToScene3" text="Zaloguj się" textAlignment="CENTER" />
             <Button fx:id="Register" alignment="CENTER" layoutX="100.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToScene2" text="Zarejstruj się" />
          </children>
       </AnchorPane>
-      <Label fx:id="loginText" alignment="CENTER" layoutX="298.0" layoutY="167.0" prefHeight="53.0" prefWidth="560.0" text="Login" textAlignment="CENTER">
+      <Label fx:id="loginText" alignment="CENTER" layoutX="339.0" layoutY="167.0" prefHeight="53.0" prefWidth="560.0" text="Login" textAlignment="CENTER">
          <font>
             <Font name="Tahoma Bold" size="39.0" />
          </font>
@@ -88,7 +72,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <AnchorPane layoutX="487.0" layoutY="220.0" prefHeight="81.0" prefWidth="140.0">
+      <AnchorPane layoutX="528.0" layoutY="220.0" prefHeight="81.0" prefWidth="140.0">
          <children>
             <TextField fx:id="LoginInput" alignment="CENTER" layoutY="20.0" prefHeight="25.0" prefWidth="182.0" promptText="Wpisz login" />
             <PasswordField fx:id="PasswordInput" alignment="CENTER" layoutY="64.0" prefHeight="25.0" prefWidth="182.0" promptText="Wpisz hasło" />
