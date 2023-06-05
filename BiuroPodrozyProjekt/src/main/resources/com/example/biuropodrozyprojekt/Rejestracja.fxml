@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
     <children>
         <VBox prefHeight="605.0" prefWidth="375.0" style="-fx-background-color: #81BECE;" stylesheets="@style.css">
             <effect>
@@ -61,7 +61,7 @@
                 </AnchorPane>
             </children>
         </VBox>
-        <AnchorPane layoutX="487.0" layoutY="391.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0">
+        <AnchorPane layoutX="487.0" layoutY="391.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0" stylesheets="@style.css">
             <children>
                 <Button fx:id="Login" alignment="CENTER" contentDisplay="TOP" layoutY="23.0" mnemonicParsing="false" onAction="#switchToScene1" text="Zaloguj się" textAlignment="CENTER" />
                 <Button fx:id="Register" alignment="CENTER" layoutX="100.0" layoutY="23.0" mnemonicParsing="false" text="Zarejstruj się" />
@@ -88,7 +88,7 @@
                 </LinearGradient>
             </textFill>
         </Label>
-        <AnchorPane layoutX="487.0" layoutY="220.0" prefHeight="195.0" prefWidth="182.0">
+        <AnchorPane layoutX="487.0" layoutY="220.0" prefHeight="195.0" prefWidth="182.0" stylesheets="@style.css">
             <children>
                 <TextField fx:id="LoginInput" alignment="CENTER" layoutY="20.0" prefHeight="25.0" prefWidth="182.0" promptText="Wpisz login" />
                 <PasswordField fx:id="PasswordInput" alignment="CENTER" layoutY="64.0" prefHeight="25.0" prefWidth="183.0" promptText="Wpisz hasło" />

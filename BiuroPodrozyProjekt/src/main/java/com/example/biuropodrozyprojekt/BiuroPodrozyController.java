@@ -132,17 +132,18 @@ public class BiuroPodrozyController implements Initializable
 
 
 
-    /* ZMIANA SCENY NA PANEL ADMINA PO ZALOGOWANIU - NIE DZIALA
-     public void switchToScene3() throws IOException {
-         Parent root = FXMLLoader.load(getClass().getResource("Pulpit_adm.fxml"));
-         //stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-         //scene = new Scene(root);
-         Stage stage = new Stage();
-         scene.getStylesheets().add(css);
-         stage.setScene(new Scene(root));
-         stage.show();
+//Zmieniona funkcja i działa chyba
+     public void switchToScene3(ActionEvent event) throws IOException {
+         if(isFieldFilled()&&isValid()) {
+             Parent root = FXMLLoader.load(getClass().getResource("Pulpit_adm.fxml"));
+
+             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             scene = stage.getScene();
+             scene.setRoot(root);
+             scene.getStylesheets().add(css);
+             stage.show();
+         }
      }
-*/
 
 
     @Override
@@ -153,7 +154,6 @@ public class BiuroPodrozyController implements Initializable
                 public void handle(MouseEvent mouseEvent) {
                     errorMessage = " ";
                     if(isFieldFilled() && isValid()){
-                        // do wklejenia funkcja zmieniająca scene na odpowiedni pulpit admin/client
                     }
                 }
             });
