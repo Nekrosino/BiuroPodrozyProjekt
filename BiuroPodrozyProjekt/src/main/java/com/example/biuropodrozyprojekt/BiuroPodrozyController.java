@@ -71,43 +71,34 @@ public class BiuroPodrozyController implements Initializable
         return isFilled;
     }
 
-    public boolean isValid(){
-        boolean isValid = true;
-        if(!LoginInput.getText().equals(BiuroPodrozyApplication.usernameAdmin))
-        {
-            isValid =false;
-            errorMessage = "Invalid Username";
-        }
+     public boolean isValid() {
+         boolean isValid = true;
+         String username = LoginInput.getText();
+         String password = PasswordInput.getText();
+         errorMessage = "";
 
-    /*
-        if(!LoginInput.getText().equals(BiuroPodrozyApplication.usernameClient))
-        {
-            isValid =false;
-            errorMessage = "Invalid Username";
-        }
-*/
-        if(!PasswordInput.getText().equals(BiuroPodrozyApplication.passwordAdmin)){
-            isValid = false;
-            if(errorMessage.isEmpty()) {
-                errorMessage = "Invalid Password!";
-            } else {
-                errorMessage +="\nInvalid Password!";
-            }
-        }
-/*
-        if(!PasswordInput.getText().equals(BiuroPodrozyApplication.passwordClient)){
-            isValid = false;
-            if(errorMessage.isEmpty()) {
-                errorMessage = "Invalid Password";
-            } else {
-                errorMessage += "\nInvalid Password";
-            }
-        }
+         if (username.equals(BiuroPodrozyApplication.usernameAdmin)) {
+             // Sprawdzenie poprawności danych dla administratora
+             if (!password.equals(BiuroPodrozyApplication.passwordAdmin)) {
+                 isValid = false;
+                 errorMessage = "Invalid Password!";
+             }
 
-*/
-        errorMessageLabel.setText(errorMessage);
-        return isValid;
-    }
+         } else if (username.equals(BiuroPodrozyApplication.usernameClient)) {
+             // Sprawdzenie poprawności danych dla użytkownika
+             if (!password.equals(BiuroPodrozyApplication.passwordClient)) {
+                 isValid = false;
+                 errorMessage = "Invalid Password!";
+             }
+         } else {
+             // Nieznany użytkownik
+             isValid = false;
+             errorMessage = "Invalid Username!";
+         }
+
+         errorMessageLabel.setText(errorMessage);
+         return isValid;
+     }
 
     String css=this.getClass().getResource("style.css").toExternalForm();
 
@@ -134,8 +125,19 @@ public class BiuroPodrozyController implements Initializable
 
 //Zmieniona funkcja i działa chyba
      public void switchToScene3(ActionEvent event) throws IOException {
-         if(isFieldFilled()&&isValid()) {
+         String username = LoginInput.getText();
+
+         if(isFieldFilled()&&isValid()&&username.equals(BiuroPodrozyApplication.usernameAdmin)) {
              Parent root = FXMLLoader.load(getClass().getResource("Pulpit_adm.fxml"));
+
+             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             scene = stage.getScene();
+             scene.setRoot(root);
+             scene.getStylesheets().add(css);
+             stage.show();
+         }
+         else if(isFieldFilled()&&isValid()&&username.equals(BiuroPodrozyApplication.usernameClient)) {
+             Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
 
              stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
              scene = stage.getScene();
@@ -145,18 +147,24 @@ public class BiuroPodrozyController implements Initializable
          }
      }
 
+     public void switchToScene4(ActionEvent event) throws IOException {
+         String username = LoginInput.getText();
+
+         if(isFieldFilled()&&isValid()&&username.equals(BiuroPodrozyApplication.usernameClient)) {
+             Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
+
+             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+             scene = stage.getScene();
+             scene.setRoot(root);
+             scene.getStylesheets().add(css);
+             stage.show();
+         }
+     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-            Login.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    errorMessage = " ";
-                    if(isFieldFilled() && isValid()){
-                    }
-                }
-            });
+
     }
 
 
