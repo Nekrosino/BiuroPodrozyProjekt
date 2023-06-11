@@ -32,7 +32,7 @@ public class BiuroPodrozyController implements Initializable
      String username = "your_username";
      String password = "your_password";
 
-
+     Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
 
 
