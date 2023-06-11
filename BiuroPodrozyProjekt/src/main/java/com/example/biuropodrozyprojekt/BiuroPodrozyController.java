@@ -33,8 +33,7 @@ public class BiuroPodrozyController implements Initializable
      String password = "your_password";
 
 
-     Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-     // Tutaj możesz wykonywać operacje na bazie danych
+
 
 
 
