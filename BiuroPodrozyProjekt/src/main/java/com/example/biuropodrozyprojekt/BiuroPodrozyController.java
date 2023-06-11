@@ -19,23 +19,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 
 public class BiuroPodrozyController implements Initializable
  {
-
-     String jdbcUrl = "jdbc:oracle:thin:@//localhost:1521/orcl";
-     String username = "your_username";
-     String password = "your_password";
-
-     Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-
-
-
 
      private Stage stage;
     private Scene scene;
@@ -64,7 +51,7 @@ public class BiuroPodrozyController implements Initializable
 
     private String errorMessage = " ";
 
-     public BiuroPodrozyController() throws SQLException {
+     public BiuroPodrozyController() {
      }
 
      public boolean isFieldFilled()
