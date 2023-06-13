@@ -8,10 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -39,6 +36,8 @@ public class BiuroPodrozyController implements Initializable
 
     @FXML
     private Button Login;
+    @FXML
+    private MenuItem Logout;
 
     @FXML
     private TextField LoginInput;
@@ -50,6 +49,10 @@ public class BiuroPodrozyController implements Initializable
     private Label errorMessageLabel;
 
     private String errorMessage = " ";
+
+     @FXML
+     private MenuItem logoutMenuItem;
+
 
      public BiuroPodrozyController() {
      }
@@ -106,9 +109,10 @@ public class BiuroPodrozyController implements Initializable
 
     String css=this.getClass().getResource("style.css").toExternalForm();
 
-        public void switchToScene1(ActionEvent event) throws IOException {
+        public void switchToLoginScene(ActionEvent event) throws IOException {
        Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+       // stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //do przycisku
+            Stage stage = (Stage) logoutMenuItem.getParentPopup().getOwnerWindow(); //do menuItem
         scene = new Scene(root);
         scene.getStylesheets().add(css);
         stage.setScene(scene);
@@ -116,7 +120,8 @@ public class BiuroPodrozyController implements Initializable
         }
 
 
-    public void switchToScene2(ActionEvent event) throws IOException {
+
+    public void switchToRegisterScene(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Rejestracja.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -128,7 +133,7 @@ public class BiuroPodrozyController implements Initializable
 
 
 //Zmieniona funkcja i działa chyba
-     public void switchToScene3(ActionEvent event) throws IOException {
+     public void switchToLoggedScene(ActionEvent event) throws IOException {
          String username = LoginInput.getText();
 
          if(isFieldFilled()&&isValid()&&username.equals(BiuroPodrozyApplication.usernameAdmin)) {
@@ -151,10 +156,10 @@ public class BiuroPodrozyController implements Initializable
          }
      }
 
-     public void switchToScene4(ActionEvent event) throws IOException {
-         String username = LoginInput.getText();
+     public void DashboardButtonOnClick(ActionEvent event) throws IOException {
 
-         if(isFieldFilled()&&isValid()&&username.equals(BiuroPodrozyApplication.usernameClient)) {
+
+
              Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
 
              stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -162,7 +167,7 @@ public class BiuroPodrozyController implements Initializable
              scene.setRoot(root);
              scene.getStylesheets().add(css);
              stage.show();
-         }
+
      }
 
     @Override

@@ -47,8 +47,8 @@
       </VBox>
       <AnchorPane layoutX="521.0" layoutY="309.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0">
          <children>
-            <Button fx:id="Login" alignment="CENTER" contentDisplay="TOP" layoutY="23.0" mnemonicParsing="false" onAction="#switchToScene3" text="Zaloguj się" textAlignment="CENTER" />
-            <Button fx:id="Register" alignment="CENTER" layoutX="100.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToScene2" text="Zarejstruj się" />
+            <Button fx:id="Login" alignment="CENTER" contentDisplay="TOP" layoutY="23.0" mnemonicParsing="false" onAction="#switchToLoggedScene" text="Zaloguj się" textAlignment="CENTER" />
+            <Button fx:id="Register" alignment="CENTER" layoutX="100.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToRegisterScene" text="Zarejstruj się" />
          </children>
       </AnchorPane>
       <Label fx:id="loginText" alignment="CENTER" layoutX="339.0" layoutY="167.0" prefHeight="53.0" prefWidth="560.0" text="Login" textAlignment="CENTER">
