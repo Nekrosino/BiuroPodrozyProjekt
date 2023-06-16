@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.biuropodrozyprojekt.BiuroPodrozyApplication.tab;
+
 
 public class BiuroPodrozyController implements Initializable
  {
@@ -53,6 +55,11 @@ public class BiuroPodrozyController implements Initializable
      @FXML
      private MenuItem logoutMenuItem;
 
+     @FXML
+     private Label HelloLabel;
+
+     @FXML
+     private Label Saldo;
 
      public BiuroPodrozyController() {
      }
@@ -170,9 +177,13 @@ public class BiuroPodrozyController implements Initializable
 
      }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+     public void PortfelButtonClick(ActionEvent event) throws IOException{
+            Saldo.setText(tab[1]);
+     }
 
+    @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    HelloLabel.setText("Hello, " + tab[0]);
 
     }
 

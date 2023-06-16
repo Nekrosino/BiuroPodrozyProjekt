@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
+<AnchorPane fx:id="AnchorLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
    <children>
       <VBox fx:id="VboxLeftMenu" prefHeight="596.0" prefWidth="372.0" styleClass="VboxLeftLogin" stylesheets="@style.css">
          <effect>
@@ -83,5 +83,6 @@
             <Font name="Tahoma Bold" size="13.0" />
          </font>
       </Label>
+      <Label fx:id="HelloLabel" layoutX="605.0" layoutY="395.0" opacity="0.0" />
    </children>
 </AnchorPane>
