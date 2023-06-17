@@ -31,6 +31,7 @@
                   </AnchorPane>
                   <Button layoutX="102.0" layoutY="486.0" mnemonicParsing="false" onAction="#PortfelButtonClick" text="Saldo" />
                   <Label fx:id="Saldo" layoutX="113.0" layoutY="520.0" />
+                  <Button fx:id="logoutButton" layoutX="92.0" layoutY="537.0" mnemonicParsing="false" onAction="#logout" text="Wyloguj" />
                </children>
             </AnchorPane>
          </children>
@@ -41,11 +42,11 @@
                <children>
                   <AnchorPane prefHeight="50.0" prefWidth="550.0">
                      <children>
-                        <MenuButton layoutX="429.0" layoutY="7.0" mnemonicParsing="false" text="Imie Nazwisko">
+                        <MenuButton fx:id="menuButton" layoutX="429.0" layoutY="7.0" mnemonicParsing="false" text="Imie Nazwisko">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Action 1" />
                             <MenuItem mnemonicParsing="false" text="Action 2" />
-                              <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#switchToLoginScene" text="Logout" />
+                              <MenuItem fx:id="logoutMenuItem" mnemonicParsing="false" onAction="#logout" text="Logout" />
                           </items>
                         </MenuButton>
                      </children></AnchorPane>
