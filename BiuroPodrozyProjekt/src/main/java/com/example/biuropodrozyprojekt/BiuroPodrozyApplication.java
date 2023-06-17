@@ -20,16 +20,12 @@ public class BiuroPodrozyApplication extends Application {
    // public static final String passwordClient = "client";
     public static String usernameClient="a";
     public static String passwordClient="a";
-    public static String login;
+    //public static String login;
 
     public static String[] tab = new String[3];
 
 
-    public void receiveLogin(String login) {
-        // Przypisz wartość saldo do odpowiedniego pola w klasie Application
-        this.login = login;
-//        String query = "SELECT login, haslo FROM klienci WHERE login = "+ login + " AND haslo = " + password;
-    }
+
 
     @Override
     public void start(Stage stage) throws IOException {

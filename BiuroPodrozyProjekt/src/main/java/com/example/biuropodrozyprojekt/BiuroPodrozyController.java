@@ -1,5 +1,7 @@
 package com.example.biuropodrozyprojekt;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.*;
@@ -25,6 +28,9 @@ import static com.example.biuropodrozyprojekt.BiuroPodrozyApplication.*;
 
 public class BiuroPodrozyController implements Initializable
  {
+
+     private StringProperty labelTextProperty = new SimpleStringProperty();
+
 
      private Stage stage;
     private Scene scene;
@@ -52,7 +58,7 @@ public class BiuroPodrozyController implements Initializable
 
     @FXML
     private Label errorMessageLabel;
-
+    @FXML
     private String errorMessage = " ";
 
      @FXML
@@ -61,7 +67,8 @@ public class BiuroPodrozyController implements Initializable
      private MenuButton menuButton;
 
      @FXML
-     private Label HelloLabel;
+     private String HelloMessage;
+
 
      @FXML
      private Button logoutButton;
@@ -81,6 +88,22 @@ public class BiuroPodrozyController implements Initializable
      private PrintWriter out;
      private BufferedReader in;
      private String sessionId;
+     @FXML
+     public Label HelloLabel;
+
+     public String Message;
+
+
+    @FXML
+     public StringProperty labelTextProperty() {
+         return labelTextProperty;
+     }
+
+     public void setLabelText(String labelText) {
+         this.labelTextProperty.set(labelText);
+     }
+
+
 
      public void connectToServer(ActionEvent e) throws IOException {
 
@@ -93,13 +116,18 @@ public class BiuroPodrozyController implements Initializable
                 password=PasswordInput.getText();
              out.println("LOGIN "+login+" "+password);
              System.out.println("Wysłane dane:"+login+" "+password);
+
+
+
              String response = in.readLine();
              // Jeżeli logowanie powiodło się, otrzymujemy identyfikator sesji
              if(response.startsWith("SESSION_ID"))
              {
                  sessionId = response.split(" ")[1];
                  System.out.println("Zalogowano pomyślnie. SESSION ID: "+sessionId);
+                 setLabelText(login);
                  switchToLoggedScene(e);
+
              }
              else{
                  System.out.println("Błąd logowania");
@@ -201,8 +229,9 @@ public class BiuroPodrozyController implements Initializable
 //        }
 
 public void switchToLoginScene(ActionEvent e) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
+    //System.out.println("Zmienna login:"+login);
 
+    Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
     stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
     scene = stage.getScene();
     scene.setRoot(root);
@@ -221,7 +250,7 @@ public void switchToLoginScene(ActionEvent e) throws IOException {
 
 
 public void switchToLoggedScene(ActionEvent e) throws IOException {
-    HelloLabel.setText("Hello, " + login);
+
     Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
 
              stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -229,6 +258,8 @@ public void switchToLoggedScene(ActionEvent e) throws IOException {
              scene.setRoot(root);
              scene.getStylesheets().add(css);
              stage.show();
+             System.out.println(login);
+
 
 }
 //Zmieniona funkcja i działa chyba
@@ -289,21 +320,11 @@ public void switchToLoggedScene(ActionEvent e) throws IOException {
 
      }
 
-     public void PortfelButtonClick(ActionEvent event) throws IOException{
 
-
-
-         //out.println(test);
-        // System.out.println(test);
-
-           // Saldo.setText(tab[1]);
-     }
-
-    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //connectToServer();
 
-        HelloLabel.setText("Hello, " + login);
+
 
 
 

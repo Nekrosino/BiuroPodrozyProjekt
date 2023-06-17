@@ -21,17 +21,17 @@
                         <Image url="@../../../Images/16671574911586787867-256.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="HelloLabel" layoutX="98.0" layoutY="205.0" />
                   <AnchorPane layoutX="25.0" layoutY="234.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="DashboardButton" layoutX="59.0" layoutY="37.0" mnemonicParsing="false" onAction="#DashboardButtonOnClick" text="Dashboard" />
+                        <Button layoutX="59.0" layoutY="37.0" mnemonicParsing="false" text="Dashboard" />
                         <Button layoutX="67.0" layoutY="163.0" mnemonicParsing="false" text="Settings" />
                         <Button layoutX="60.0" layoutY="100.0" mnemonicParsing="false" text="My Tickets" />
                      </children>
                   </AnchorPane>
-                  <Button layoutX="102.0" layoutY="486.0" mnemonicParsing="false" onAction="#PortfelButtonClick" text="Saldo" />
+                  <Button layoutX="102.0" layoutY="486.0" mnemonicParsing="false" text="Saldo" />
                   <Label fx:id="Saldo" layoutX="113.0" layoutY="520.0" />
                   <Button fx:id="logoutButton" layoutX="92.0" layoutY="537.0" mnemonicParsing="false" onAction="#logout" text="Wyloguj" />
+                  <Label layoutX="111.0" layoutY="217.0" text="TEST" />
                </children>
             </AnchorPane>
          </children>
