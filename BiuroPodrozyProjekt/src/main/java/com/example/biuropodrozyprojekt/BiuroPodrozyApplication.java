@@ -11,14 +11,25 @@ import java.net.*;
 
 import java.io.IOException;
 
+
 public class BiuroPodrozyApplication extends Application {
 
     public static final String usernameAdmin = "admin";
     public static final String passwordAdmin = "admin";
-    public static final String usernameClient = "client";
-    public static final String passwordClient = "client";
+   // public static final String usernameClient = "client";
+   // public static final String passwordClient = "client";
+    public static String usernameClient="a";
+    public static String passwordClient="a";
+    public static String login;
 
-    public static String[] tab = new String[2];
+    public static String[] tab = new String[3];
+
+
+    public void receiveLogin(String login) {
+        // Przypisz wartość saldo do odpowiedniego pola w klasie Application
+        this.login = login;
+//        String query = "SELECT login, haslo FROM klienci WHERE login = "+ login + " AND haslo = " + password;
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,44 +44,49 @@ public class BiuroPodrozyApplication extends Application {
     }
 
 
+
     public static void main(String[] args) {
 
-        try {
-            // Tworzenie gniazda klienta i nawiązywanie połączenia z serwerem
-            Socket clientSocket = new Socket("localhost", 1234);
-            System.out.println("Połączono z serwerem: " + clientSocket.getInetAddress().getHostAddress());
+        //            // Tworzenie gniazda klienta i nawiązywanie połączenia z serwerem
+//            Socket clientSocket = new Socket("localhost", 1234);
+//            System.out.println("Połączono z serwerem: " + clientSocket.getInetAddress().getHostAddress());
+//
+//            // Inicjalizacja strumieni wejścia/wyjścia
+//            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+//            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+//
+////            // Wysyłanie danych do serwera
+//           String dataToSend = "Select login from klienci where login = "+ login;
+//           out.println(dataToSend);
 
-            // Inicjalizacja strumieni wejścia/wyjścia
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+        // Odczytywanie odpowiedzi serwera
+//            String response = in.readLine();
+//            System.out.println("Odpowiedź serwera: " + response);
 
-            // Wysyłanie zapytań do serwera
-            int i=0;
-            String[] queries = {"Zapytanie 1","Zapytanie 2"};
-            tab[0] = "nwm";
-            tab[1] = "fasfa";
-            for (String query : queries) {
-                System.out.println("Wysyłanie zapytania do serwera: " + query);
-                out.println(query);
+//            // Wysyłanie zapytań do serwera
+//            int i=0;
+//            String[] queries = {"Zapytanie 1","Zapytanie 2","Zapytanie 3"};
+//
+//            for (String query : queries) {
+//                System.out.println("Wysyłanie zapytania do serwera: " + query);
+//                out.println(query);
+//
+//                // Odczytywanie odpowiedzi serwera
+//                String response = in.readLine();
+//                tab[i] = response;
+//                System.out.println("Odpowiedź serwera: " + response);
+//                i++;
+//            }
+//             usernameClient = tab[0];
+//             passwordClient = tab[2];
+//            System.out.println("Otrzymany login:" + tab[0]);
+//            System.out.println("Stan Portfela:"+tab[1]);
+//            System.out.println("Otrzymane haslo:"+tab[2]);
 
-                // Odczytywanie odpowiedzi serwera
-                String response = in.readLine();
-                tab[i] = response;
-                System.out.println("Odpowiedź serwera: " + response);
-                i++;
-            }
-
-            System.out.println("TEST1" + tab[0]);
-            System.out.println(tab[1]);
-            //System.out.println(tab[0]);
-
-            launch();
-            // Zamknięcie połączenia
-            in.close();
-            out.close();
-            clientSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        launch();
+//            // Zamknięcie połączenia
+//            in.close();
+//            out.close();
+//            clientSocket.close();
     }
 }

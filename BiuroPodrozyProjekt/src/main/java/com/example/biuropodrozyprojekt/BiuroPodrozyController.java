@@ -12,12 +12,15 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import java.io.*;
+import java.net.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.Buffer;
 import java.util.ResourceBundle;
 
-import static com.example.biuropodrozyprojekt.BiuroPodrozyApplication.tab;
+import static com.example.biuropodrozyprojekt.BiuroPodrozyApplication.*;
 
 
 public class BiuroPodrozyController implements Initializable
@@ -61,8 +64,27 @@ public class BiuroPodrozyController implements Initializable
      @FXML
      private Label Saldo;
 
+     String test = "test";
+     String queryLogin;
+
      public BiuroPodrozyController() {
      }
+
+     private Socket clientSockett;
+     private PrintWriter out;
+     private BufferedReader in;
+
+     public void connectToServer() {
+         try {
+             clientSockett = new Socket("localhost", 1234);
+             out = new PrintWriter(clientSockett.getOutputStream(), true);
+             in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
+
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
+     }
+
 
      public boolean isFieldFilled()
     {
@@ -141,9 +163,27 @@ public class BiuroPodrozyController implements Initializable
 
 //Zmieniona funkcja i działa chyba
      public void switchToLoggedScene(ActionEvent event) throws IOException {
-         String username = LoginInput.getText();
+            String login = LoginInput.getText();
+         String password = PasswordInput.getText();
+         BiuroPodrozyApplication application = new BiuroPodrozyApplication();
+         application.receiveLogin(login);
 
-         if(isFieldFilled()&&isValid()&&username.equals(BiuroPodrozyApplication.usernameAdmin)) {
+        queryLogin = login;
+        out.println(queryLogin);
+
+        queryLogin = password;
+        out.println(queryLogin);
+         String query1 = in.readLine();
+         String query2 = in.readLine();
+         usernameClient = query1;
+         passwordClient=query2;
+
+         System.out.println(query1);
+         HelloLabel.setText("Hello, " + usernameClient);
+
+
+
+         if(isFieldFilled()&&isValid()&&login.equals(BiuroPodrozyApplication.usernameAdmin)) {
              Parent root = FXMLLoader.load(getClass().getResource("Pulpit_adm.fxml"));
 
              stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -152,7 +192,7 @@ public class BiuroPodrozyController implements Initializable
              scene.getStylesheets().add(css);
              stage.show();
          }
-         else if(isFieldFilled()&&isValid()&&username.equals(BiuroPodrozyApplication.usernameClient)) {
+         else if(isFieldFilled()&&isValid()&&login.equals(BiuroPodrozyApplication.usernameClient)) {
              Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
 
              stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -178,12 +218,21 @@ public class BiuroPodrozyController implements Initializable
      }
 
      public void PortfelButtonClick(ActionEvent event) throws IOException{
+
+
+
+         out.println(test);
+         System.out.println(test);
+
             Saldo.setText(tab[1]);
      }
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    HelloLabel.setText("Hello, " + tab[0]);
+            connectToServer();
+        HelloLabel.setText("Hello, " + usernameClient);
+
+
 
     }
 
