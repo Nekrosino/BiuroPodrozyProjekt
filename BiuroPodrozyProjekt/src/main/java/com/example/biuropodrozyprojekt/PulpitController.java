@@ -105,7 +105,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         connectionManager = new ConnectionManager();
         printLogin();
         printPassword();
-        helloLabel.setText("Witaj " + login);
+        helloLabel.setText("Hello " + login);
        // helloLabel.setText(login);
 
         //login=connectionManager.getData();

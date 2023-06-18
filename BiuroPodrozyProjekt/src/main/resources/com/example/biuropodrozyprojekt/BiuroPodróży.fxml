@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
+<AnchorPane fx:id="AnchorLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.BiuroPodrozyController">
    <children>
       <VBox fx:id="VboxLeftMenu" prefHeight="596.0" prefWidth="372.0" styleClass="VboxLeftLogin" stylesheets="@style.css">
          <effect>
@@ -47,8 +47,8 @@
       </VBox>
       <AnchorPane layoutX="521.0" layoutY="309.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0">
          <children>
-            <Button fx:id="Login" alignment="CENTER" contentDisplay="TOP" layoutY="23.0" mnemonicParsing="false" onAction="#connectToServer" text="Zaloguj się" textAlignment="CENTER" />
-            <Button fx:id="Register" alignment="CENTER" layoutX="100.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToRegisterScene" text="Zarejstruj się" />
+            <Button fx:id="Login" alignment="CENTER" contentDisplay="TOP" layoutX="14.0" layoutY="24.0" mnemonicParsing="false" onAction="#connectToServer" prefHeight="23.0" prefWidth="67.0" text="Login" textAlignment="CENTER" />
+            <Button fx:id="Register" alignment="CENTER" layoutX="111.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToRegisterScene" text="Register" />
          </children>
       </AnchorPane>
       <Label fx:id="loginText" alignment="CENTER" layoutX="339.0" layoutY="167.0" prefHeight="53.0" prefWidth="560.0" text="Login" textAlignment="CENTER">
