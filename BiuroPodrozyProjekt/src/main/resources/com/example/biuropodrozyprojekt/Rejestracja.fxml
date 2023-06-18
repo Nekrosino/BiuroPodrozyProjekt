@@ -17,14 +17,14 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.RegisterController">
     <children>
-        <VBox prefHeight="605.0" prefWidth="375.0" style="-fx-background-color: #81BECE;" stylesheets="@style.css">
+        <VBox prefHeight="605.0" prefWidth="375.0" style="-fx-background-color: #81BECE;" styleClass="Background" stylesheets="@style.css">
             <effect>
                 <Blend mode="SRC_ATOP" />
             </effect>
             <children>
-                <AnchorPane prefHeight="473.0" prefWidth="332.0">
+                <AnchorPane prefHeight="598.0" prefWidth="375.0" styleClass="Background">
                     <children>
                         <Circle layoutX="196.0" layoutY="245.0" radius="130.0" stroke="BLACK" strokeType="INSIDE">
                             <effect>
@@ -63,7 +63,8 @@
         </VBox>
         <AnchorPane layoutX="487.0" layoutY="483.0" minHeight="-Infinity" prefHeight="49.0" prefWidth="178.0" stylesheets="@style.css">
             <children>
-                <Button fx:id="Register" alignment="CENTER" layoutX="60.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToLoginScene" text="Submit" />
+                <Button fx:id="Register" alignment="CENTER" layoutX="21.0" layoutY="3.0" mnemonicParsing="false" onAction="#switchToLoginScene" text="Submit" />
+            <Button layoutX="114.0" layoutY="3.0" mnemonicParsing="false" onAction="#returnToLoginScene" text="Return" />
             </children>
         </AnchorPane>
         <Label fx:id="loginText" alignment="CENTER" layoutX="302.0" layoutY="86.0" prefHeight="53.0" prefWidth="560.0" text="Register" textAlignment="CENTER">
@@ -87,16 +88,16 @@
                 </LinearGradient>
             </textFill>
         </Label>
-        <AnchorPane layoutX="487.0" layoutY="172.0" prefHeight="308.0" prefWidth="189.0" stylesheets="@style.css">
+        <AnchorPane layoutX="487.0" layoutY="175.0" prefHeight="308.0" prefWidth="189.0" stylesheets="@style.css">
             <children>
-                <TextField fx:id="LoginField" alignment="CENTER" layoutX="8.0" layoutY="129.0" prefHeight="25.0" prefWidth="182.0" promptText="Wpisz login" />
-                <PasswordField fx:id="PasswordField" alignment="CENTER" layoutY="178.0" prefHeight="25.0" prefWidth="183.0" promptText="Wpisz hasło" />
-            <TextField fx:id="EmailField" alignment="TOP_CENTER" layoutX="7.0" layoutY="262.0" prefHeight="25.0" prefWidth="183.0" promptText="Wpisz e-mail" />
-            <TextField fx:id="AdresField" layoutX="17.0" layoutY="68.0" promptText="Miasto" />
-            <PasswordField fx:id="RepeatPasswordField" alignment="TOP_CENTER" layoutX="7.0" layoutY="217.0" prefHeight="25.0" prefWidth="183.0" promptText="Wpisz ponownie hasło" />
-            <TextField fx:id="SurnameField" layoutX="17.0" layoutY="35.0" promptText="Nazwisko" />
-            <TextField fx:id="NameField" layoutX="17.0" layoutY="2.0" promptText="Imię" />
-            <TextField fx:id="PhoneField" layoutX="8.0" layoutY="104.0" promptText="Numer Telefonu" />
+                <TextField fx:id="LoginField" alignment="CENTER" layoutX="20.0" layoutY="142.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz login" />
+                <PasswordField fx:id="PasswordField" alignment="CENTER" layoutX="20.0" layoutY="176.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz hasło" />
+            <TextField fx:id="EmailField" alignment="CENTER" layoutX="20.0" layoutY="257.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz e-mail" />
+            <TextField fx:id="AdresField" alignment="CENTER" layoutX="20.0" layoutY="72.0" promptText="Miasto" />
+            <PasswordField fx:id="RepeatPasswordField" alignment="CENTER" layoutX="20.0" layoutY="217.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz ponownie hasło" />
+            <TextField fx:id="SurnameField" alignment="CENTER" layoutX="20.0" layoutY="39.0" promptText="Nazwisko" />
+            <TextField fx:id="NameField" alignment="CENTER" layoutX="20.0" layoutY="2.0" promptText="Imię" />
+            <TextField fx:id="PhoneField" alignment="CENTER" layoutX="20.0" layoutY="107.0" prefHeight="25.0" prefWidth="149.0" promptText="Numer Telefonu" />
             </children>
         </AnchorPane>
     </children>

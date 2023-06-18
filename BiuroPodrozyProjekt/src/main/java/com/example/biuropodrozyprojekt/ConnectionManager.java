@@ -132,5 +132,24 @@ public class ConnectionManager {
 //            System.out.println("Nie udało się dodać użytkownika");
 //        }
     }
+    public String getWycieczka(int idwycieczki) throws IOException{
+        clientSockett = new Socket("localhost", 1234);
+        out = new PrintWriter(clientSockett.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
+        out.println("GETWYCIECZKA " + idwycieczki);
+
+        String response = in.readLine();
+        // Jeżeli logowanie powiodło się, otrzymujemy identyfikator sesji
+        if (response.startsWith("GETWYCIECZKA")) {
+            String parts = response;
+            System.out.println("Otrzymano pomyślnie dane dla użytkownika: "+parts);
+            return parts;
+
+        } else {
+            System.out.println("Błąd pobrania danych");
+            return null;
+        }
+
+    }
     // Pozostałe metody związane z połączeniem
 }

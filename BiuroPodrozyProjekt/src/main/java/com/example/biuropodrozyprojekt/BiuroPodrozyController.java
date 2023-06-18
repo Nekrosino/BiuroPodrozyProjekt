@@ -76,6 +76,8 @@ public class BiuroPodrozyController implements Initializable
      @FXML
      private Label Saldo;
 
+
+
      String test = "test";
      String queryLogin;
      public String login;
@@ -221,6 +223,17 @@ public void switchToLoginScene(ActionEvent e) throws IOException {
     scene.setRoot(root);
     scene.getStylesheets().add(css);
     stage.show();
+}
+
+public void test(MouseEvent e) throws IOException {
+
+    Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
+    stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+    scene = stage.getScene();
+    scene.setRoot(root);
+    scene.getStylesheets().add(css);
+    stage.show();
+
 }
 
     public void switchToRegisterScene(ActionEvent e) throws IOException {

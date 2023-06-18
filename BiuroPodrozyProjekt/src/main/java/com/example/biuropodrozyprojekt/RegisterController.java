@@ -85,6 +85,21 @@ public class RegisterController implements Initializable {
         }
     }
 
+    public void returnToLoginScene(ActionEvent e) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("BiuroPodróży.fxml"));
+        Parent root = loader.load();
+        BiuroPodrozyController biuroPodrozyController = loader.getController();
+        // pulpitController.setLogin(login);
+
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        scene = stage.getScene();
+        scene.setRoot(root);
+        stage.show();
+
+
+    }
+
+
     public void fillForm()
     {
         Name = NameField.getText();

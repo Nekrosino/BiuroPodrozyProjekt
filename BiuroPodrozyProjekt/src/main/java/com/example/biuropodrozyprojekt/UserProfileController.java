@@ -66,9 +66,9 @@ protected String password;
                         userNameText = dane[1];
                         userSurnameText = dane[2];
                         userSaldoText = dane[3];
-                     System.out.println("Otrzymane imie"+dane[1]);
-                    System.out.println("Otrzymane nazwisko"+dane[2]);
-                    System.out.println("Otrzymane saldo"+dane[3]);
+                     System.out.println("Otrzymane imie "+dane[1]);
+                    System.out.println("Otrzymane nazwisko "+dane[2]);
+                    System.out.println("Otrzymane saldo "+dane[3]);
         }
 
     }
@@ -86,6 +86,8 @@ protected String password;
         stage.show();
     }
 
+
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         connectionManager = new ConnectionManager();
@@ -98,7 +100,7 @@ protected String password;
         surnameLabel.setText(userSurnameText);
         saldoLabel.setText(userSaldoText);
 
-        helloLabel.setText("Witaj " + login);
+        helloLabel.setText("Hello " + login);
 
 
     }

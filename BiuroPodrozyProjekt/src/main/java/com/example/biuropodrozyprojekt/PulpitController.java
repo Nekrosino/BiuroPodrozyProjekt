@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +21,14 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     @FXML
     private Label helloLabel;
 
+    @FXML
+    private Label nazwaWycieczki;
+
+    @FXML
+    private Label poczatekWycieczki;
+
+    @FXML
+    private Label koniecWycieczki;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -27,6 +36,23 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     public String password;
 
     public String parts;
+
+    public String daneWycieczka;
+
+    public int idWycieczka;
+
+    public String [] wycieczkaTab;
+
+    public String nazwa;
+    public String dataRozpoczecia;
+    public String dataZakonczenia;
+
+    @FXML
+    private Label Stegna;
+
+
+
+
 
     public void printLogin() {
         System.out.println("Login w pulpicie: " + getLogin());
@@ -97,6 +123,32 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
 
     public void setConnectionManager(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;
+    }
+
+    public void print(MouseEvent e) throws IOException{
+    idWycieczka=1;
+    getDaneWycieczka();
+
+        nazwa = wycieczkaTab[1];
+        dataRozpoczecia = wycieczkaTab[2];
+        dataZakonczenia=wycieczkaTab[3];
+
+    nazwaWycieczki.setText(nazwa);
+    poczatekWycieczki.setText(dataRozpoczecia);
+    koniecWycieczki.setText(dataZakonczenia);
+
+    }
+
+    public void getDaneWycieczka() throws IOException {
+        daneWycieczka = connectionManager.getWycieczka(idWycieczka);
+        wycieczkaTab = daneWycieczka.split(" ");
+
+    }
+
+    public void dprint(MouseEvent e) throws IOException{
+        nazwaWycieczki.setText(" ");
+        poczatekWycieczki.setText(" ");
+        koniecWycieczki.setText(" ");
     }
 
 
