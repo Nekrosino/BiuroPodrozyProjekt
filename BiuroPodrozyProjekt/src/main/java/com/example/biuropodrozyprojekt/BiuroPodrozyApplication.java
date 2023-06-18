@@ -30,6 +30,8 @@ public class BiuroPodrozyApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
+
         Scene loginScene = new Scene( root);
         stage.setTitle("Travel Agency Management System");
         stage.getIcons().add(new Image(("palma.png")));

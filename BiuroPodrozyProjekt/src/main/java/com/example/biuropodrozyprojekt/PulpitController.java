@@ -23,7 +23,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     private Stage stage;
     private Scene scene;
     private Parent root;
-    String login;
+    protected String login;
 
     public void printLogin() {
         System.out.println("Login w pulpicie: " + getLogin());
@@ -37,6 +37,20 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         Parent root = loader.load();
         BiuroPodrozyController biuroPodrozyController = loader.getController();
        // pulpitController.setLogin(login);
+
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        scene = stage.getScene();
+        scene.setRoot(root);
+        stage.show();
+    }
+
+    public void onProfileButtonClick(ActionEvent e) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UserProfile.fxml"));
+        Parent root = loader.load();
+        UserProfileController userProfileController = loader.getController();
+        userProfileController.setLogin(login);
+        userProfileController.initialize(null, null); // Manually call the initialize method
+        // pulpitController.setLogin(login);
 
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = stage.getScene();
@@ -61,8 +75,8 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     public void initialize(URL url, ResourceBundle resourceBundle) {
        //setConnectionManager(connectionManager);
         connectionManager = new ConnectionManager();
-       // printLogin();
-        helloLabel.setText("Witaj " + getLogin());
+        printLogin();
+        helloLabel.setText("Witaj " + login);
        // helloLabel.setText(login);
 
         //login=connectionManager.getData();
