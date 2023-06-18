@@ -91,6 +91,14 @@ public class BiuroPodrozyController implements Initializable
          this.login = login;
      }
 
+     public String getPassword(){
+         return password;
+     }
+
+     public void setPassword(String password){
+         this.password=password;
+     }
+
      private Socket clientSockett;
      private PrintWriter out;
      private BufferedReader in;
@@ -116,7 +124,7 @@ public class BiuroPodrozyController implements Initializable
              // Tworzenie połączenia z serwerem
                 setLogin(LoginInput.getText());
                 System.out.println("Powinnobyc:"+login);
-                password=PasswordInput.getText();
+                setPassword(PasswordInput.getText());
          if(LoginInput.getText().isEmpty())
          {
            login = "shdjhsdkj";
@@ -234,6 +242,7 @@ public void switchToLoggedScene(ActionEvent e) throws IOException {
     Parent root = loader.load();
     PulpitController pulpitController = loader.getController();
     pulpitController.setLogin(login);  // Ustawienie wartości pola login
+    pulpitController.setPassword(password);
     pulpitController.initialize(null, null); // Manually call the initialize method
    // pulpitController.setConnectionManager(connectionManager);
 

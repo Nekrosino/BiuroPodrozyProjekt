@@ -89,9 +89,27 @@ public class ConnectionManager {
         this.data = login;
     }
 
-    public String getData() {
-        System.out.println("Dane wyslane z managera w connection: "+data);
-        return data;
+    public String getProfileData(String login,String password) throws IOException
+    {
+        clientSockett = new Socket("localhost", 1234);
+        out = new PrintWriter(clientSockett.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
+        // Wysyłanie żądania danych
+        out.println("PROFILEDATA " + login + " " + password);
+        System.out.println("Wysłane dane: " + login + " " + password);
+
+
+        String response = in.readLine();
+        // Jeżeli logowanie powiodło się, otrzymujemy identyfikator sesji
+        if (response.startsWith("PROFILEDATA")) {
+            String parts = response;
+            System.out.println("Otrzymano pomyślnie dane dla użytkownika: "+parts);
+            return parts;
+
+        } else {
+            System.out.println("Błąd pobrania danych");
+            return null;
+        }
     }
     // Pozostałe metody związane z połączeniem
 }

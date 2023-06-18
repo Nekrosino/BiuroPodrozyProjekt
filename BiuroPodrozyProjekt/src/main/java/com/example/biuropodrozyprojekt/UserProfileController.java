@@ -24,12 +24,22 @@ private ConnectionManager connectionManager = new ConnectionManager();
 private Scene scene;
 private Stage stage;
 
+
+
 @FXML
 private Label helloLabel;
 protected String login;
+
+protected  String[] parts;
+protected String password;
     public void printLogin() {
         System.out.println("Login w profilu: " + getLogin());
         login = getLogin();
+    }
+
+    public void printParts()
+    {
+        parts = getParts();
     }
 
     public void onDashboardButtonClick(ActionEvent e) throws IOException {
@@ -37,7 +47,7 @@ protected String login;
         Parent root = loader.load();
         PulpitController pulpitController = loader.getController();
          pulpitController.setLogin(login);
-        pulpitController.initialize(null, null); // Manually call the initialize method
+         pulpitController.initialize(null, null); // Manually call the initialize method
         //userProfileController.setLogin(login);
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = stage.getScene();
@@ -46,15 +56,12 @@ protected String login;
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //setConnectionManager(connectionManager);
+
         connectionManager = new ConnectionManager();
+
         printLogin();
         helloLabel.setText("Witaj " + login);
-        //helloLabel.setText("Witaj " + login);
-        // helloLabel.setText(login);
 
-        //login=connectionManager.getData();
-        // System.out.println("Dane z managera"+login);
-        // helloLabel.setText("Witaj "+login);
+
     }
 }

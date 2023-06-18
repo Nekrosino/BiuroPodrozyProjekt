@@ -24,12 +24,27 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     private Scene scene;
     private Parent root;
     protected String login;
+    public String password;
+
+    public String[] parts;
 
     public void printLogin() {
         System.out.println("Login w pulpicie: " + getLogin());
         login = getLogin();
     }
 
+    public void printPassword(){
+        password = getPassword();
+    }
+
+    public void setLogin(String[] parts) {
+        this.parts = parts;
+    }
+
+    public String[] getParts()
+    {
+        return parts;
+    }
 
 
     public void switchToLoginScene(ActionEvent e) throws IOException {
@@ -49,6 +64,17 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         Parent root = loader.load();
         UserProfileController userProfileController = loader.getController();
         userProfileController.setLogin(login);
+        userProfileController.setPassword(password);
+        System.out.println("Login wyslany"+login);
+        System.out.println("Haslo wyslane"+password);
+        connectionManager.connectToServer(login,password);
+        String parts = connectionManager.getProfileData(login,password);
+        String[] splittedparts = parts.split(" ");
+//        String username = splittedparts[1];
+//        String password = splittedparts[2];
+//        String saldo = splittedparts[3];
+        //System.out.println("Otrzymany wynik "+username+" "+password+" "+saldo);
+        //userProfileController.setParts(parts);
         userProfileController.initialize(null, null); // Manually call the initialize method
         // pulpitController.setLogin(login);
 
@@ -76,6 +102,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
        //setConnectionManager(connectionManager);
         connectionManager = new ConnectionManager();
         printLogin();
+        printPassword();
         helloLabel.setText("Witaj " + login);
        // helloLabel.setText(login);
 
