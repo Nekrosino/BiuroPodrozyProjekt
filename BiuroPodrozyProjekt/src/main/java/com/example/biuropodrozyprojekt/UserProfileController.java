@@ -23,14 +23,27 @@ public class UserProfileController extends PulpitController implements Initializ
 private ConnectionManager connectionManager = new ConnectionManager();
 private Scene scene;
 private Stage stage;
+//private String[] dane;
 
 
 
 @FXML
 private Label helloLabel;
+
+@FXML
+private Label nameLabel;
+@FXML
+private Label surnameLabel;
+@FXML
+private Label saldoLabel;
 protected String login;
 
-protected  String[] parts;
+protected  String parts;
+private String[] dane;
+
+String userSaldoText;
+String userNameText;
+String userSurnameText;
 protected String password;
     public void printLogin() {
         System.out.println("Login w profilu: " + getLogin());
@@ -40,6 +53,24 @@ protected String password;
     public void printParts()
     {
         parts = getParts();
+        //dane = parts.split(" ");
+         //userNameText = dane[1];
+        // userSurnameText = dane[2];
+        // userSaldoText = dane[3];
+    }
+
+    public void splitdata()
+    {
+        if (parts != null) {
+            dane = parts.split(" ");
+                        userNameText = dane[1];
+                        userSurnameText = dane[2];
+                        userSaldoText = dane[3];
+                     System.out.println("Otrzymane imie"+dane[1]);
+                    System.out.println("Otrzymane nazwisko"+dane[2]);
+                    System.out.println("Otrzymane saldo"+dane[3]);
+        }
+
     }
 
     public void onDashboardButtonClick(ActionEvent e) throws IOException {
@@ -60,6 +91,13 @@ protected String password;
         connectionManager = new ConnectionManager();
 
         printLogin();
+        printParts();
+        splitdata();
+        System.out.println("DOSTAŁEM "+parts);
+        nameLabel.setText(userNameText);
+        surnameLabel.setText(userSurnameText);
+        saldoLabel.setText(userSaldoText);
+
         helloLabel.setText("Witaj " + login);
 
 

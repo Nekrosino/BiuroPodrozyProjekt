@@ -26,7 +26,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     protected String login;
     public String password;
 
-    public String[] parts;
+    public String parts;
 
     public void printLogin() {
         System.out.println("Login w pulpicie: " + getLogin());
@@ -37,12 +37,13 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         password = getPassword();
     }
 
-    public void setLogin(String[] parts) {
+
+
+    public void setParts(String parts) {
         this.parts = parts;
     }
 
-    public String[] getParts()
-    {
+    public String getParts(){
         return parts;
     }
 
@@ -67,9 +68,10 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         userProfileController.setPassword(password);
         System.out.println("Login wyslany"+login);
         System.out.println("Haslo wyslane"+password);
-        connectionManager.connectToServer(login,password);
+       // connectionManager.connectToServer(login,password);
         String parts = connectionManager.getProfileData(login,password);
-        String[] splittedparts = parts.split(" ");
+        userProfileController.setParts(parts);
+        //String[] splittedparts = parts.split(" ");
 //        String username = splittedparts[1];
 //        String password = splittedparts[2];
 //        String saldo = splittedparts[3];
