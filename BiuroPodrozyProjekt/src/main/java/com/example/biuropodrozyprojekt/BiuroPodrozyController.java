@@ -28,7 +28,7 @@ import static com.example.biuropodrozyprojekt.BiuroPodrozyApplication.*;
 
 public class BiuroPodrozyController implements Initializable
  {
-
+     private ConnectionManager connectionManager;
      private StringProperty labelTextProperty = new SimpleStringProperty();
 
 
@@ -88,8 +88,7 @@ public class BiuroPodrozyController implements Initializable
      private PrintWriter out;
      private BufferedReader in;
      private String sessionId;
-     @FXML
-     public Label HelloLabel;
+
 
      public String Message;
 
@@ -108,62 +107,31 @@ public class BiuroPodrozyController implements Initializable
      public void connectToServer(ActionEvent e) throws IOException {
 
              // Tworzenie połączenia z serwerem
-             clientSockett = new Socket("localhost", 1234);
-             out = new PrintWriter(clientSockett.getOutputStream(), true);
-             in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
-             // Wysyłanie żądania logowania
                 login=LoginInput.getText();
                 password=PasswordInput.getText();
-             out.println("LOGIN "+login+" "+password);
-             System.out.println("Wysłane dane:"+login+" "+password);
-
-
-
-             String response = in.readLine();
-             // Jeżeli logowanie powiodło się, otrzymujemy identyfikator sesji
-             if(response.startsWith("SESSION_ID"))
-             {
-                 sessionId = response.split(" ")[1];
-                 System.out.println("Zalogowano pomyślnie. SESSION ID: "+sessionId);
-                 setLabelText(login);
-                 switchToLoggedScene(e);
-
-             }
-             else{
-                 System.out.println("Błąd logowania");
-             }
-
+         if(LoginInput.getText().isEmpty())
+         {
+           login = "shdjhsdkj";
          }
 
+         if(PasswordInput.getText().isEmpty())
+         {
+             password = "shkjhsadjhdsajkds";
+         }
 
-     public void logout(ActionEvent e) throws IOException {
-         // Sprawdzenie, czy klient jest zalogowany
+         String sessionId = connectionManager.connectToServer(login,password);
+
          if (sessionId != null) {
-             // Wysłanie żądania wylogowania
-             out.println("LOGOUT " + sessionId);
-             String response = in.readLine();
+             Message = login;
+             System.out.println("Dane wyslane do managera"+Message);
+             switchToLoggedScene(e);
 
-             if (response.equals("LOGOUT_SUCCESS")) {
-                 // Wylogowanie zakończone pomyślnie
-                 sessionId = null;
-
-                 System.out.println("Wylogowano pomyślnie");
-             } else {
-                 System.out.println("Błąd wylogowania");
-             }
-         } else {
-             System.out.println("Klient nie jest zalogowany");
-             switchToLoginScene(e);
-             disconnect();
          }
-     }
 
-     public void disconnect() throws IOException {
-         // Zamknięcie połączenia
-         if (clientSockett != null) {
-             clientSockett.close();
+
          }
-     }
+
+
 
 
      public boolean isFieldFilled()
@@ -239,90 +207,43 @@ public void switchToLoginScene(ActionEvent e) throws IOException {
     stage.show();
 }
 
-    public void switchToRegisterScene(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Rejestracja.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        scene.getStylesheets().add(css);
-        stage.setScene(scene);
+    public void switchToRegisterScene(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Rejestracja.fxml"));
+        Parent root = loader.load();
+        RegisterController registerController = loader.getController();
+        //pulpitController.setLogin(login);
+
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        scene = stage.getScene();
+        scene.setRoot(root);
         stage.show();
     }
 
 
 public void switchToLoggedScene(ActionEvent e) throws IOException {
 
-    Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Pulpit_cli.fxml"));
+    Parent root = loader.load();
+    PulpitController pulpitController = loader.getController();
+   // pulpitController.setConnectionManager(connectionManager);
 
-             stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-             scene = stage.getScene();
-             scene.setRoot(root);
-             scene.getStylesheets().add(css);
-             stage.show();
-             System.out.println(login);
+
+    //pulpitController.setLogin(login);
+    //pulpitController.setConnectionManager(connectionManager);
+
+    stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+    scene = stage.getScene();
+    scene.setRoot(root);
+    stage.show();
 
 
 }
-//Zmieniona funkcja i działa chyba
-//     public void switchToLoggedScene(ActionEvent event) throws IOException {
-//
-//          login = LoginInput.getText();
-//          password = PasswordInput.getText();
-//         connectToServer();
-//         BiuroPodrozyApplication application = new BiuroPodrozyApplication();
-//         application.receiveLogin(login);
-//
-//       // queryLogin = login;
-//        //out.println(login);
-//
-//        //queryLogin = password;
-//       // out.println(password);
-//        // String query1 = in.readLine();
-//        // String query2 = in.readLine();
-//        // usernameClient = query1;
-//       //  passwordClient=query2;
-//
-//        // System.out.println(query1);
-//         HelloLabel.setText("Hello, " + usernameClient);
-//
-//
-//
-//         if(isFieldFilled()&&isValid()&&login.equals(BiuroPodrozyApplication.usernameAdmin)) {
-//             Parent root = FXMLLoader.load(getClass().getResource("Pulpit_adm.fxml"));
-//
-//             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//             scene = stage.getScene();
-//             scene.setRoot(root);
-//             scene.getStylesheets().add(css);
-//             stage.show();
-//         }
-//         else if(isFieldFilled()&&isValid()&&login.equals(BiuroPodrozyApplication.usernameClient)) {
-//             Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
-//
-//             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//             scene = stage.getScene();
-//             scene.setRoot(root);
-//             scene.getStylesheets().add(css);
-//             stage.show();
-//         }
-//     }
 
-     public void DashboardButtonOnClick(ActionEvent event) throws IOException {
-
-
-
-             Parent root = FXMLLoader.load(getClass().getResource("Pulpit_cli.fxml"));
-
-             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             scene = stage.getScene();
-             scene.setRoot(root);
-             scene.getStylesheets().add(css);
-             stage.show();
-
-     }
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //connectToServer();
+        connectionManager = new ConnectionManager();
 
 
 
