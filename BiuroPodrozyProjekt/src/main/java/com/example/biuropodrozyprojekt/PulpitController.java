@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PulpitController implements Initializable {
+public class PulpitController extends BiuroPodrozyController implements Initializable {
     private ConnectionManager connectionManager;
     @FXML
     private Label helloLabel;
@@ -23,10 +23,12 @@ public class PulpitController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private String login;
+    String login;
 
-
-
+    public void printLogin() {
+        System.out.println("Login w pulpicie: " + getLogin());
+        login = getLogin();
+    }
 
 
 
@@ -47,7 +49,8 @@ public class PulpitController implements Initializable {
 
             connectionManager.logout();
             connectionManager.disconnect();
-        switchToLoginScene(e);
+            printLogin();
+            switchToLoginScene(e);
         }
 
     public void setConnectionManager(ConnectionManager connectionManager) {
@@ -58,6 +61,9 @@ public class PulpitController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
        //setConnectionManager(connectionManager);
         connectionManager = new ConnectionManager();
+       // printLogin();
+        helloLabel.setText("Witaj " + getLogin());
+       // helloLabel.setText(login);
 
         //login=connectionManager.getData();
        // System.out.println("Dane z managera"+login);

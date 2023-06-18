@@ -78,10 +78,17 @@ public class BiuroPodrozyController implements Initializable
 
      String test = "test";
      String queryLogin;
-     private String login;
+     public String login;
      private String password;
 
      public BiuroPodrozyController() {
+     }
+     public String getLogin() {
+         return login;
+     }
+
+     public void setLogin(String login) {
+         this.login = login;
      }
 
      private Socket clientSockett;
@@ -107,7 +114,8 @@ public class BiuroPodrozyController implements Initializable
      public void connectToServer(ActionEvent e) throws IOException {
 
              // Tworzenie połączenia z serwerem
-                login=LoginInput.getText();
+                setLogin(LoginInput.getText());
+                System.out.println("Powinnobyc:"+login);
                 password=PasswordInput.getText();
          if(LoginInput.getText().isEmpty())
          {
@@ -225,6 +233,8 @@ public void switchToLoggedScene(ActionEvent e) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Pulpit_cli.fxml"));
     Parent root = loader.load();
     PulpitController pulpitController = loader.getController();
+    pulpitController.setLogin(login);  // Ustawienie wartości pola login
+    pulpitController.initialize(null, null); // Manually call the initialize method
    // pulpitController.setConnectionManager(connectionManager);
 
 
