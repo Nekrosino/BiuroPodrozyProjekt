@@ -111,5 +111,26 @@ public class ConnectionManager {
             return null;
         }
     }
+
+
+    public void registerUser(String Imie,String Nazwisko,String Adres,String Numer,String email,String login,String haslo,String portfel ) throws IOException
+    {
+        clientSockett = new Socket("localhost", 1234);
+        out = new PrintWriter(clientSockett.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
+        //wyslanie żądania
+        out.println("REGISTERUSER "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel);
+        System.out.println("Dane uzytkownika do rejestracji: "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel );
+
+//        String response = in.readLine();
+//        if(response.startsWith("REGISTERUSER"))
+//        {
+//            System.out.println("Pomyslnie dodano: "+" uzytkownika do rejestracji: "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel);
+//        }
+//        else
+//        {
+//            System.out.println("Nie udało się dodać użytkownika");
+//        }
+    }
     // Pozostałe metody związane z połączeniem
 }
