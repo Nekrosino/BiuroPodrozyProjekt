@@ -2,8 +2,6 @@ package com.example.biuropodrozyprojekt;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,22 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+/**
+ * Klasa RegisterController implementuje interfejs Initializable i jest odpowiedzialna za obsługę rejestracji użytkownika w aplikacji.
+ */
 public class RegisterController implements Initializable {
 
     private ConnectionManager connectionManager = new ConnectionManager();
@@ -59,10 +49,16 @@ public class RegisterController implements Initializable {
     private String Phone;
     private String Adres;
     private String Email;
-    //private String[] dane;
 
+    /**
+     *  Metoda obsługująca przycisk przejścia do ekranu logowania. Sprawdza poprawność wprowadzonych danych rejestracyjnych,
+     *  następnie wywołuje metodę registerUser() z ConnectionManager w celu zarejestrowania użytkownika.
+     *  Jeśli rejestracja powiedzie się, przełącza scenę na ekran logowania.
+     * @param e obsługa zdarzenia
+     * @throws IOException
+     */
     public void switchToLoginScene(ActionEvent e) throws IOException {
-//
+
         fillForm();
         if(Password.equals(RepeatPassword))
         {
@@ -72,7 +68,7 @@ public class RegisterController implements Initializable {
         Parent root = loader.load();
         BiuroPodrozyController biuroPodrozyController = loader.getController();
         connectionManager.registerUser(Name,Surname,Adres,Phone,Email,Login,Password,"99999.9");
-        // pulpitController.setLogin(login);
+
 
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = stage.getScene();
@@ -85,11 +81,15 @@ public class RegisterController implements Initializable {
         }
     }
 
+    /**
+     * Metoda obsługująca przycisk powrotu do ekranu logowania. Przełącza scenę na ekran logowania.
+     * @param e obsługa zdarzenia
+     * @throws IOException
+     */
     public void returnToLoginScene(ActionEvent e) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BiuroPodróży.fxml"));
         Parent root = loader.load();
         BiuroPodrozyController biuroPodrozyController = loader.getController();
-        // pulpitController.setLogin(login);
 
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = stage.getScene();
@@ -99,7 +99,9 @@ public class RegisterController implements Initializable {
 
     }
 
-
+    /**
+     *  Metoda pobierająca wprowadzone dane rejestracyjne z pól tekstowych i zapisująca je do odpowiednich pól.
+     */
     public void fillForm()
     {
         Name = NameField.getText();
@@ -112,6 +114,12 @@ public class RegisterController implements Initializable {
         Email = EmailField.getText();
 
     }
+
+    /**
+     * Metoda inicjalizująca kontroler.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

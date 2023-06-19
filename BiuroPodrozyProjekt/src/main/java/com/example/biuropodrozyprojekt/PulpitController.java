@@ -7,15 +7,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Klasa PulpitController rozszerzająca klasę BiuroPodrozyController i implementująca interfejs Initializable
+ */
 public class PulpitController extends BiuroPodrozyController implements Initializable {
     private ConnectionManager connectionManager;
     @FXML
@@ -31,7 +32,6 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     private Label koniecWycieczki;
     private Stage stage;
     private Scene scene;
-    private Parent root;
     protected String login;
     public String password;
 
@@ -51,34 +51,46 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     private Label Stegna;
 
 
-
-
-
+    /**
+     * Funkcja przekazująca informacje na temat loginu użytkownika do aplikacji
+     */
     public void printLogin() {
         System.out.println("Login w pulpicie: " + getLogin());
         login = getLogin();
     }
 
+    /**
+     *  Funkcja przekazująca informacje na temat hasła użytkownika do aplikacji
+     */
     public void printPassword(){
         password = getPassword();
     }
 
-
-
+    /**
+     *  Setter, służący do ustawienia wartości pola parts
+     * @param parts zmienna przechowująca dane użytkownika
+     */
     public void setParts(String parts) {
         this.parts = parts;
     }
 
+    /**
+     * Getter, służący do pobrania informacji o danych użytkownika
+     * @return zwraca dane użytkownika
+     */
     public String getParts(){
         return parts;
     }
 
-
+    /**
+     * Metoda przełączająca scenę na ekran logowania.
+     * @param e obsługa zdarzeń na przycisku
+     * @throws IOException
+     */
     public void switchToLoginScene(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BiuroPodróży.fxml"));
         Parent root = loader.load();
         BiuroPodrozyController biuroPodrozyController = loader.getController();
-       // pulpitController.setLogin(login);
 
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = stage.getScene();
@@ -86,6 +98,11 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         stage.show();
     }
 
+    /**
+     * Metoda obsługująca przycisk profilu użytkownika. Przełącza scenę na ekran profilu użytkownika i przekazuje login, hasło i dane profilu.
+     * @param e obsługa zdarzeń na przycisku
+     * @throws IOException
+     */
     public void onProfileButtonClick(ActionEvent e) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UserProfile.fxml"));
         Parent root = loader.load();
@@ -94,17 +111,9 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         userProfileController.setPassword(password);
         System.out.println("Login wyslany"+login);
         System.out.println("Haslo wyslane"+password);
-       // connectionManager.connectToServer(login,password);
         String parts = connectionManager.getProfileData(login,password);
         userProfileController.setParts(parts);
-        //String[] splittedparts = parts.split(" ");
-//        String username = splittedparts[1];
-//        String password = splittedparts[2];
-//        String saldo = splittedparts[3];
-        //System.out.println("Otrzymany wynik "+username+" "+password+" "+saldo);
-        //userProfileController.setParts(parts);
         userProfileController.initialize(null, null); // Manually call the initialize method
-        // pulpitController.setLogin(login);
 
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = stage.getScene();
@@ -112,6 +121,12 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         stage.show();
     }
 
+    /**
+     * Metoda obsługująca wylogowanie użytkownika, wywołuje metody logout() i disconnect() z ConnectionManager,
+     * następnie przełącza scenę na ekran logowania.
+     * @param e obsługa zdarzeń na przycisku
+     * @throws IOException
+     */
     public void logout(ActionEvent e) throws IOException {
 
 
@@ -121,10 +136,12 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
             switchToLoginScene(e);
         }
 
-    public void setConnectionManager(ConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-    }
 
+    /**
+     * Metoda obsługująca zdarzenie najechania myszą na obrazek. Pobiera dane wycieczki i wyświetla je na etykietach.
+     * @param e obsługa zdarzeń na myszce
+     * @throws IOException
+     */
     public void print(MouseEvent e) throws IOException{
     idWycieczka=1;
     getDaneWycieczka();
@@ -139,29 +156,38 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
 
     }
 
+    /**
+     * Metoda pobierająca dane wycieczki z bazy danych
+     * @throws IOException
+     */
     public void getDaneWycieczka() throws IOException {
         daneWycieczka = connectionManager.getWycieczka(idWycieczka);
         wycieczkaTab = daneWycieczka.split(" ");
 
     }
 
+    /**
+     * Metoda czyszcząca zawartośc etykiet, po zjechaniu myszą z obiektu
+     * @param e obsługa zdarzenia
+     * @throws IOException
+     */
     public void dprint(MouseEvent e) throws IOException{
         nazwaWycieczki.setText(" ");
         poczatekWycieczki.setText(" ");
         koniecWycieczki.setText(" ");
     }
 
-
+    /**
+     *  Metoda inicjalizująca kontroler. Ustawia obiekt ConnectionManager, wywołuje metody printLogin() i printPassword()
+     *  oraz ustawia tekst etykiety helloLabel.
+     * @param url
+     * @param resourceBundle
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       //setConnectionManager(connectionManager);
         connectionManager = new ConnectionManager();
         printLogin();
         printPassword();
         helloLabel.setText("Hello " + login);
-       // helloLabel.setText(login);
 
-        //login=connectionManager.getData();
-       // System.out.println("Dane z managera"+login);
-       // helloLabel.setText("Witaj "+login);
     }
 }

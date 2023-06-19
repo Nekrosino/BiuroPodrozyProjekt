@@ -1,29 +1,14 @@
 package com.example.biuropodrozyprojekt;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+
 import java.io.*;
 import java.net.*;
 
 import java.io.IOException;
-import java.net.URL;
-import java.nio.Buffer;
-import java.util.ResourceBundle;
 
-
+/**
+ * Klasa ConnectionManager odpowiedzialna za zarządzanie połączeniem między klientem a serwerem.
+ */
 public class ConnectionManager {
     private String sessionId;
     private Socket clientSockett;
@@ -31,6 +16,13 @@ public class ConnectionManager {
     private BufferedReader in;
     private String data;
 
+    /**
+     *  Metoda nawiązuje połączenie z serwerem, wysyła żądanie logowania z danymi użytkownika (login i hasło) i odbiera odpowiedź od serwera
+     * @param login login wpisany przez użytkownika
+     * @param password hasło wpisane przez użytkownika
+     * @return zwraca ID sesji gdy logowanie powiodło się, w innym przypadku zwraca NULL
+     * @throws IOException wyrzucenie wyjątku w przypadku niepowodzenia
+     */
     public String connectToServer(String login, String password) throws IOException {
         // Tworzenie połączenia z serwerem
         clientSockett = new Socket("localhost", 1234);
@@ -54,6 +46,10 @@ public class ConnectionManager {
         }
     }
 
+    /**
+     *  Metoda wysyła żądanie wylogowania do serwera. Jeśli wylogowanie powiedzie się, metoda ustawia identyfikator sesji na null.
+     * @throws IOException
+     */
     public void logout() throws IOException {
         // Sprawdzenie, czy klient jest zalogowany
         if (sessionId != null) {
@@ -64,7 +60,7 @@ public class ConnectionManager {
             if (response.equals("LOGOUT_SUCCESS")) {
                 // Wylogowanie zakończone pomyślnie
                 sessionId = null;
-                //disconnect();
+
 
                 System.out.println("Wylogowano pomyślnie");
             } else {
@@ -72,23 +68,27 @@ public class ConnectionManager {
             }
         } else {
             System.out.println("Klient nie jest zalogowany");
-            //switchToLoginScene();
-            //disconnect();
         }
     }
 
+    /**
+     * Zamknięcie połączenia z serwerem
+     * @throws IOException
+     */
     public void disconnect() throws IOException {
-        // Zamknięcie połączenia
         if (clientSockett != null) {
             clientSockett.close();
         }
     }
 
-    public void setData(String login) throws IOException
-    {
-        this.data = login;
-    }
-
+    /**
+     *  Metoda wysyła żądanie pobrania danych profilu użytkownika do serwera, przekazując dane logowania.
+     *  Jeśli żądanie powiedzie się, metoda zwraca odpowiedź od serwera, która zawiera dane profilu użytkownika
+     * @param login login użytkownika
+     * @param password hasło użytkownika
+     * @return zwraca uzyskane dane przy sukcesie lub w przeciwnym wypadku zwraca NULL
+     * @throws IOException
+     */
     public String getProfileData(String login,String password) throws IOException
     {
         clientSockett = new Socket("localhost", 1234);
@@ -112,7 +112,18 @@ public class ConnectionManager {
         }
     }
 
-
+    /**
+     * Metoda ta wysyła żądanie rejestracji nowego użytkownika do serwera, przekazując wszystkie niezbędne dane rejestracyjne.
+     * @param Imie Imie podane przez użytkownika
+     * @param Nazwisko Nazwisko podane przez użytkownika
+     * @param Adres Adres podany przez użytkownika
+     * @param Numer Numer telefonu podany przez użytkownika
+     * @param email E-mail podany przez użytkownika
+     * @param login Login podany przez użytkownika
+     * @param haslo Hasło podane przez użytkownika
+     * @param portfel Portfel podany przez użytkownika
+     * @throws IOException
+     */
     public void registerUser(String Imie,String Nazwisko,String Adres,String Numer,String email,String login,String haslo,String portfel ) throws IOException
     {
         clientSockett = new Socket("localhost", 1234);
@@ -122,16 +133,15 @@ public class ConnectionManager {
         out.println("REGISTERUSER "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel);
         System.out.println("Dane uzytkownika do rejestracji: "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel );
 
-//        String response = in.readLine();
-//        if(response.startsWith("REGISTERUSER"))
-//        {
-//            System.out.println("Pomyslnie dodano: "+" uzytkownika do rejestracji: "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel);
-//        }
-//        else
-//        {
-//            System.out.println("Nie udało się dodać użytkownika");
-//        }
+
     }
+
+    /**
+     *  Metoda ta wysyła żądanie pobrania danych o wycieczce o określonym identyfikatorze do serwera.
+     * @param idwycieczki identyfikator wycieczki
+     * @return Jeśli żądanie powiedzie się, metoda zwraca odpowiedź od serwera, która zawiera dane wycieczki.
+     * @throws IOException
+     */
     public String getWycieczka(int idwycieczki) throws IOException{
         clientSockett = new Socket("localhost", 1234);
         out = new PrintWriter(clientSockett.getOutputStream(), true);

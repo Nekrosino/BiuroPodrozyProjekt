@@ -1,9 +1,6 @@
 package com.example.biuropodrozyprojekt;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,26 +12,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import java.io.*;
-import java.net.*;
-
 import java.io.IOException;
 import java.net.URL;
-import java.nio.Buffer;
 import java.util.ResourceBundle;
 
-import static com.example.biuropodrozyprojekt.BiuroPodrozyApplication.*;
 
-
+/**
+ *  Klasa BiuroPodrozyController jest kontrolerem interfejsu użytkownika w aplikacji biura podróży.
+ *  Odpowiada za obsługę zdarzeń i logikę związaną z logowaniem i rejestracją użytkowników.
+ */
 public class BiuroPodrozyController implements Initializable
  {
      private ConnectionManager connectionManager;
-     private StringProperty labelTextProperty = new SimpleStringProperty();
-
 
      private Stage stage;
     private Scene scene;
-    private Parent root;
+
 
     @FXML
     private Label loginText;
@@ -47,8 +40,7 @@ public class BiuroPodrozyController implements Initializable
 
     @FXML
     private Button Login;
-    @FXML
-    private MenuItem Logout;
+
 
     @FXML
     private TextField LoginInput;
@@ -56,71 +48,54 @@ public class BiuroPodrozyController implements Initializable
     @FXML
     private PasswordField PasswordInput;
 
-    @FXML
-    private Label errorMessageLabel;
-    @FXML
-    private String errorMessage = " ";
-
-     @FXML
-     private MenuItem logoutMenuItem;
-@FXML
-     private MenuButton menuButton;
-
-     @FXML
-     private String HelloMessage;
-
-
-     @FXML
-     private Button logoutButton;
-
-     @FXML
-     private Label Saldo;
-
-
-
-     String test = "test";
-     String queryLogin;
      public String login;
      private String password;
 
+     /**
+      * Konstruktor aplikacji Biura Podrozy
+      */
      public BiuroPodrozyController() {
      }
      public String getLogin() {
          return login;
      }
 
+     /**
+      *  Setter, służący do ustawienia wartości pola login
+      * @param login zmienna przechowująca login
+      */
      public void setLogin(String login) {
          this.login = login;
      }
 
+     /**
+      * Getter, służacy do pozyskania informacji na temat hasła
+      * @return zwraca hasło
+      */
      public String getPassword(){
          return password;
      }
 
+     /**
+      *  Setter, służący do ustawienia wartości pola hasło
+      * @param password zmienna przechowująca hasło
+      */
      public void setPassword(String password){
          this.password=password;
      }
 
-     private Socket clientSockett;
-     private PrintWriter out;
-     private BufferedReader in;
-     private String sessionId;
 
-
+     /**
+      * Zmienna przechowująca wiadomość dla ConnectionManagera
+      */
      public String Message;
 
 
-    @FXML
-     public StringProperty labelTextProperty() {
-         return labelTextProperty;
-     }
-
-     public void setLabelText(String labelText) {
-         this.labelTextProperty.set(labelText);
-     }
-
-
-
+     /**
+      *  Metoda obsługująca próbę połączenia z serwerem.
+      * @param e obsługa zdarzenia na przycisku
+      * @throws IOException wyrzucenie wyjątku w przypadku niepowodzenia
+      */
      public void connectToServer(ActionEvent e) throws IOException {
 
              // Tworzenie połączenia z serwerem
@@ -137,6 +112,9 @@ public class BiuroPodrozyController implements Initializable
              password = "shkjhsadjhdsajkds";
          }
 
+    /**
+    * Pozyskanie ID sesji zalogowanego użytkownika
+    */
          String sessionId = connectionManager.connectToServer(login,password);
 
          if (sessionId != null) {
@@ -150,106 +128,43 @@ public class BiuroPodrozyController implements Initializable
          }
 
 
+    String css=this.getClass().getResource("style.css").toExternalForm();
 
-
-     public boolean isFieldFilled()
-    {
-        boolean isFilled = true;
-        if(LoginInput.getText().isEmpty()){
-            isFilled = false;
-            errorMessage = "Username is Empty";
-        }
-
-        if(PasswordInput.getText().isEmpty()){
-            isFilled = false;
-            if(errorMessage.isEmpty()){
-                errorMessage = "Password is empty";
-            }
-            else {
-                errorMessage += "\nPassword is empty!";
-            }
-        }
-        errorMessageLabel.setText(errorMessage);
-        return isFilled;
-    }
-
-     public boolean isValid() {
-         boolean isValid = true;
-         String username = LoginInput.getText();
-         String password = PasswordInput.getText();
-         errorMessage = "";
-
-         if (username.equals(BiuroPodrozyApplication.usernameAdmin)) {
-             // Sprawdzenie poprawności danych dla administratora
-             if (!password.equals(BiuroPodrozyApplication.passwordAdmin)) {
-                 isValid = false;
-                 errorMessage = "Invalid Password!";
-             }
-
-         } else if (username.equals(BiuroPodrozyApplication.usernameClient)) {
-             // Sprawdzenie poprawności danych dla użytkownika
-             if (!password.equals(BiuroPodrozyApplication.passwordClient)) {
-                 isValid = false;
-                 errorMessage = "Invalid Password!";
-             }
-         } else {
-             // Nieznany użytkownik
-             isValid = false;
-             errorMessage = "Invalid Username!";
-         }
-
-         errorMessageLabel.setText(errorMessage);
-         return isValid;
+     /**
+      * : Metoda testowa do przełączania na scenę logowania.
+      * @param e obsługa zdarzenia na przycisku
+      * @throws IOException wyrzucenie wyjątku w przypadku niepowodzenia
+      */
+     public void test(MouseEvent e) throws IOException {
+         Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
+         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+         scene = stage.getScene();
+         scene.setRoot(root);
+         scene.getStylesheets().add(css);
+         stage.show();
      }
 
-    String css=this.getClass().getResource("style.css").toExternalForm();
-//
-//        public void switchToLoginScene(ActionEvent event) throws IOException {
-//       Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
-//       // stage = (Stage)((Node)event.getSource()).getScene().getWindow(); //do przycisku
-//            Stage stage = (Stage) logoutMenuItem.getParentPopup().getOwnerWindow(); //do menuItem
-//        scene = new Scene(root);
-//        scene.getStylesheets().add(css);
-//        stage.setScene(scene);
-//        stage.show();
-//        }
-
-public void switchToLoginScene(ActionEvent e) throws IOException {
-    //System.out.println("Zmienna login:"+login);
-
-    Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
-    stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-    scene = stage.getScene();
-    scene.setRoot(root);
-    scene.getStylesheets().add(css);
-    stage.show();
-}
-
-public void test(MouseEvent e) throws IOException {
-
-    Parent root = FXMLLoader.load(getClass().getResource("BiuroPodróży.fxml"));
-    stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-    scene = stage.getScene();
-    scene.setRoot(root);
-    scene.getStylesheets().add(css);
-    stage.show();
-
-}
-
+     /**
+      * Metoda przełączająca na scenę rejestracji
+      * @param e obsługa zdarzenia na przycisku
+      * @throws IOException wyrzucenie wyjątku w przypadku niepowodzenia
+      */
     public void switchToRegisterScene(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Rejestracja.fxml"));
         Parent root = loader.load();
         RegisterController registerController = loader.getController();
-        //pulpitController.setLogin(login);
-
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = stage.getScene();
         scene.setRoot(root);
         stage.show();
     }
 
-
-public void switchToLoggedScene(ActionEvent e) throws IOException {
+     /**
+      * Metoda przełączająca na scenę zalogowanego pulpitu
+      * @param e obsługa zdarzenia na przycisku
+      * @throws IOException wyrzucenie wyjątku w przypadku niepowodzenia
+      */
+     public void switchToLoggedScene(ActionEvent e) throws IOException {
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Pulpit_cli.fxml"));
     Parent root = loader.load();
@@ -257,11 +172,8 @@ public void switchToLoggedScene(ActionEvent e) throws IOException {
     pulpitController.setLogin(login);  // Ustawienie wartości pola login
     pulpitController.setPassword(password);
     pulpitController.initialize(null, null); // Manually call the initialize method
-   // pulpitController.setConnectionManager(connectionManager);
 
 
-    //pulpitController.setLogin(login);
-    //pulpitController.setConnectionManager(connectionManager);
 
     stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
     scene = stage.getScene();
@@ -272,9 +184,13 @@ public void switchToLoggedScene(ActionEvent e) throws IOException {
 }
 
 
-
+     /**
+      * Metoda inicjalizująca kontroler po załadowaniu sceny.
+      * @param url
+      * @param resourceBundle
+      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //connectToServer();
+
         connectionManager = new ConnectionManager();
 
 
