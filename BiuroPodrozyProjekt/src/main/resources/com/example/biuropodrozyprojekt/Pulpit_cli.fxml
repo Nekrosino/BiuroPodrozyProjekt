@@ -6,8 +6,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1200.0" minHeight="599.0" minWidth="798.0" prefHeight="599.0" prefWidth="798.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.PulpitController">
+<AnchorPane maxHeight="900.0" maxWidth="1200.0" minHeight="599.0" minWidth="798.0" prefHeight="599.0" prefWidth="798.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.PulpitController">
    <children>
       <VBox fx:id="LPanelVbox" prefHeight="600.0" prefWidth="250.0" styleClass="Background" stylesheets="@style.css">
          <children>
@@ -25,11 +26,18 @@
                         <Button contentDisplay="CENTER" layoutX="85.0" layoutY="89.0" mnemonicParsing="false" text="My Tickets" />
                      </children>
                   </AnchorPane>
-                  <Button contentDisplay="CENTER" layoutX="85.0" layoutY="473.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="80.0" text="Saldo" />
                   <Label fx:id="Saldo" layoutX="113.0" layoutY="520.0" />
                   <Button fx:id="logoutButton" contentDisplay="CENTER" layoutX="85.0" layoutY="526.0" mnemonicParsing="false" onAction="#logout" prefHeight="23.0" prefWidth="80.0" text="Logout" />
-                  <Label fx:id="helloLabel" alignment="CENTER" layoutY="217.0" prefHeight="17.0" prefWidth="250.0" text="TEST" />
+                  <Label fx:id="helloLabel" alignment="CENTER" layoutY="217.0" prefHeight="17.0" prefWidth="250.0" text="TEST">
+                     <font>
+                        <Font name="Tahoma Bold" size="12.0" />
+                     </font></Label>
                   <Button fx:id="ProfileButton" contentDisplay="CENTER" layoutX="85.0" layoutY="424.0" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="23.0" prefWidth="80.0" text="Account" />
+                  <ImageView fitHeight="23.0" fitWidth="16.0" layoutX="63.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/16147924811618134427-128.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
@@ -43,30 +51,33 @@
                         <Image url="@../../../plaza.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="Stegna" alignment="CENTER" layoutX="45.0" layoutY="155.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
+                  <Label fx:id="Stegna" alignment="CENTER" layoutX="45.0" layoutY="155.0" prefHeight="17.0" prefWidth="117.0" text="Stegna">
+                     <font>
+                        <Font name="Tahoma" size="12.0" />
+                     </font></Label>
                   <ImageView fx:id="pic2" fitHeight="120.0" fitWidth="117.0" layoutX="203.0" layoutY="30.0" onMouseClicked="#test" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../plaza.jpg" />
+                        <Image url="@../../../1włochyRzym.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="pic3" fitHeight="120.0" fitWidth="117.0" layoutX="367.0" layoutY="30.0" onMouseClicked="#test" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../plaza.jpg" />
+                        <Image url="@../../../2chorwacjaDubrovnik.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="120.0" fitWidth="117.0" layoutX="45.0" layoutY="265.0" onMouseClicked="#test" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../plaza.jpg" />
+                        <Image url="@../../../3francjaParyz.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="120.0" fitWidth="117.0" layoutX="217.0" layoutY="265.0" onMouseClicked="#test" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../plaza.jpg" />
+                        <Image url="@../../../4szwecjaSztokholm.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="120.0" fitWidth="117.0" layoutX="384.0" layoutY="265.0" onMouseClicked="#test" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../plaza.jpg" />
+                        <Image url="@../../../5husavikIslandia.jpg" />
                      </image>
                   </ImageView>
                   <Button fx:id="button1" layoutX="54.0" layoutY="180.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
@@ -75,11 +86,11 @@
                   <Button fx:id="button4" layoutX="54.0" layoutY="414.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
                   <Button fx:id="button5" layoutX="226.0" layoutY="414.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
                   <Button fx:id="button6" layoutX="393.0" layoutY="414.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
-                  <Label alignment="CENTER" layoutX="203.0" layoutY="155.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
-                  <Label alignment="CENTER" layoutX="367.0" layoutY="155.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
-                  <Label alignment="CENTER" layoutX="45.0" layoutY="391.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
-                  <Label alignment="CENTER" layoutX="218.0" layoutY="387.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
-                  <Label alignment="CENTER" layoutX="386.0" layoutY="391.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
+                  <Label alignment="CENTER" layoutX="203.0" layoutY="155.0" prefHeight="17.0" prefWidth="117.0" text="Rzym" />
+                  <Label alignment="CENTER" layoutX="367.0" layoutY="155.0" prefHeight="17.0" prefWidth="117.0" text="Dubrovnik" />
+                  <Label alignment="CENTER" layoutX="45.0" layoutY="391.0" prefHeight="17.0" prefWidth="117.0" text="Paryż" />
+                  <Label alignment="CENTER" layoutX="218.0" layoutY="387.0" prefHeight="17.0" prefWidth="117.0" text="Sztokholm" />
+                  <Label alignment="CENTER" layoutX="386.0" layoutY="391.0" prefHeight="17.0" prefWidth="117.0" text="Husavik" />
                   <Label fx:id="nazwaWycieczki" layoutX="37.0" layoutY="474.0" prefHeight="31.0" prefWidth="150.0" />
                   <Label fx:id="poczatekWycieczki" layoutX="37.0" layoutY="505.0" prefHeight="31.0" prefWidth="150.0" />
                   <Label fx:id="koniecWycieczki" layoutX="37.0" layoutY="536.0" prefHeight="31.0" prefWidth="150.0" />
