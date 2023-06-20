@@ -40,13 +40,15 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
 
     public String daneWycieczka;
 
-    public int idWycieczka;
+    public String idWycieczka;
+
 
     public String [] wycieczkaTab;
 
     public String nazwa;
     public String dataRozpoczecia;
     public String dataZakonczenia;
+    public String cenaWycieczka;
 
     @FXML
     private Label Stegna;
@@ -102,7 +104,46 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
 
     public String getNazwaWycieczki(){return nazwa;}
 
-//    public void setPoczatekWycieczki(String )
+    public void setDataRozpoczecia(String dataRozpoczecia)
+    {
+        this.dataRozpoczecia = dataRozpoczecia;
+    }
+
+    public String getDataRozpoczecia()
+    {
+        return dataRozpoczecia;
+    }
+
+    public void setDataZakonczenia(String dataZakonczenia)
+    {
+        this.dataZakonczenia = dataZakonczenia;
+    }
+
+    public String getDataZakonczenia()
+    {
+        return dataZakonczenia;
+    }
+
+    public void setCenaWycieczka(String cenaWycieczka)
+    {
+        this.cenaWycieczka = cenaWycieczka;
+    }
+
+    public String getCenaWycieczka()
+    {
+        return cenaWycieczka;
+    }
+
+    public void setIDwycieczka(String idWycieczka)
+    {
+        this.idWycieczka = idWycieczka;
+    }
+
+    public String getIDwycieczka()
+    {
+
+        return idWycieczka;
+    }
 
 
     /**
@@ -134,7 +175,8 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         userProfileController.setPassword(password);
         System.out.println("Login wyslany"+login);
         System.out.println("Haslo wyslane"+password);
-        String parts = connectionManager.getProfileData(login,password);
+//        String parts = connectionManager.getProfileData(login,password);
+        String parts = connectionManager.getProfileData(login);
         userProfileController.setParts(parts);
         userProfileController.initialize(null, null); // Manually call the initialize method
 
@@ -166,7 +208,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
      * @throws IOException
      */
     public void print(MouseEvent e) throws IOException{
-    idWycieczka=1;
+    idWycieczka="1";
     getDaneWycieczka();
 
         nazwa = wycieczkaTab[1];
@@ -215,7 +257,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         Button button = (Button) e.getSource();
         if(button.getId().equals("button1"))
         {
-            idWycieczka =1;
+            idWycieczka ="1";
             //wysylamy nazwe wycieczki
             //wysylamy zdjecie
             //wysylamy cene
@@ -224,39 +266,45 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
             //date zakonczenia
             getDaneWycieczka();
 
+
         }
         else if(button.getId().equals("button2"))
         {
-            idWycieczka = 2;
+            idWycieczka = "2";
             getDaneWycieczka();
 
         }
         else if(button.getId().equals("button3"))
         {
-            idWycieczka =3;
+            idWycieczka ="3";
             getDaneWycieczka();
         }
         else if(button.getId().equals("button4"))
         {
-            idWycieczka=4;
+            idWycieczka="4";
             getDaneWycieczka();
         }
         else if(button.getId().equals("button5"))
         {
-            idWycieczka=5;
+            idWycieczka="5";
             getDaneWycieczka();
         }
         else if(button.getId().equals("button6"))
         {
-            idWycieczka=6;
+            idWycieczka="6";
             getDaneWycieczka();
         }
         nazwa = wycieczkaTab[1];
         dataRozpoczecia = wycieczkaTab[2];
         dataZakonczenia=wycieczkaTab[3];
+        cenaWycieczka=wycieczkaTab[4];
+
         basketController.setLogin(login);
         basketController.setNazwaWycieczki(nazwa);
-//        basketController.set
+        basketController.setDataRozpoczecia(dataRozpoczecia);
+        basketController.setDataZakonczenia(dataZakonczenia);
+        basketController.setCenaWycieczka(cenaWycieczka);
+       basketController.setIDwycieczka(idWycieczka);
         basketController.initialize(null, null); // Manually call the initialize method
 
 

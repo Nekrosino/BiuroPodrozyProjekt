@@ -100,5 +100,10 @@
             <TextField fx:id="EmailField" alignment="CENTER" layoutX="20.0" layoutY="257.0" prefHeight="25.0" prefWidth="149.0" promptText="Wpisz e-mail" />
             </children>
         </AnchorPane>
+      <Label fx:id="ErrorMessage" alignment="CENTER" layoutX="374.0" layoutY="543.0" prefHeight="17.0" prefWidth="428.0" textFill="#d00000">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

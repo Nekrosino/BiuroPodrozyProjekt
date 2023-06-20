@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -52,6 +53,9 @@ public class RegisterController implements Initializable {
     private String Email;
     private String idKlient;
 
+    @FXML
+    private Label ErrorMessage;
+
 
     public void getID() throws IOException {
         idKlient = connectionManager.getLastID();
@@ -86,7 +90,6 @@ public class RegisterController implements Initializable {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("BiuroPodróży.fxml"));
                             Parent root = loader.load();
                             BiuroPodrozyController biuroPodrozyController = loader.getController();
-
                             stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
                             scene = stage.getScene();
                             scene.setRoot(root);
@@ -94,25 +97,27 @@ public class RegisterController implements Initializable {
                         }
                         else
                         {
+                            ErrorMessage.setText("Nazwa uzytkownika w uzyciu");
                             System.out.println("Nazwa uzytkownika w uzyciu");
                         }
                     }
                     else
                     {
-                        System.out.println("Podaj adres e-mail");
+                        ErrorMessage.setText("Podaj adres e-mail");
                     }
                 }
-                else System.out.println("Numer telefonu musi mieć dokładnie 9 cyfr");
+                else ErrorMessage.setText("Numer telefonu musi mieć dokładnie 9 cyfr");
             }
             else
             {
-                System.out.println("Hasla sie roznia!");
+                ErrorMessage.setText("Hasla sie roznia!");
             }
         }
         else
         {
-            System.out.println("Wypełnij wszystkie pola!");
+            ErrorMessage.setText("Wypełnij wszystkie pola!");
         }
+
     }
 
     /**

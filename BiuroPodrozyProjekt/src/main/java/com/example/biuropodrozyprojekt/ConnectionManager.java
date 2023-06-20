@@ -85,18 +85,21 @@ public class ConnectionManager {
      *  Metoda wysyła żądanie pobrania danych profilu użytkownika do serwera, przekazując dane logowania.
      *  Jeśli żądanie powiedzie się, metoda zwraca odpowiedź od serwera, która zawiera dane profilu użytkownika
      * @param login login użytkownika
-     * @param password hasło użytkownika
      * @return zwraca uzyskane dane przy sukcesie lub w przeciwnym wypadku zwraca NULL
      * @throws IOException
      */
-    public String getProfileData(String login,String password) throws IOException
+    public String getProfileData(String login) throws IOException
     {
         clientSockett = new Socket("localhost", 1234);
         out = new PrintWriter(clientSockett.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
         // Wysyłanie żądania danych
-        out.println("PROFILEDATA " + login + " " + password);
-        System.out.println("Wysłane dane: " + login + " " + password);
+//        out.println("PROFILEDATA " + login + " " + password);
+            out.println("PROFILEDATA " + login);
+//        System.out.println("Wysłane dane: " + login + " " + password);
+         System.out.println("Wysłane dane: " + login);
+
+
 
 
         String response = in.readLine();
@@ -176,7 +179,7 @@ public class ConnectionManager {
      * @return Jeśli żądanie powiedzie się, metoda zwraca odpowiedź od serwera, która zawiera dane wycieczki.
      * @throws IOException
      */
-    public String getWycieczka(int idwycieczki) throws IOException{
+    public String getWycieczka(String idwycieczki) throws IOException{
         clientSockett = new Socket("localhost", 1234);
         out = new PrintWriter(clientSockett.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
@@ -192,6 +195,14 @@ public class ConnectionManager {
             System.out.println("Błąd pobrania danych");
             return null;
         }
+
+    }
+
+    public void buyWycieczka(String idklienta,String idwycieczki, String data_rezerwacji) throws IOException {
+        clientSockett = new Socket("localhost", 1234);
+        out = new PrintWriter(clientSockett.getOutputStream(), true);
+       // in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
+        out.println("BUYWYCIECZKA "+idklienta+" "+idwycieczki+" "+data_rezerwacji);
 
     }
     // Pozostałe metody związane z połączeniem

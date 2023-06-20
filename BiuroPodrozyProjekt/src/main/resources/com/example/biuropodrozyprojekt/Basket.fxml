@@ -20,7 +20,7 @@
                         <Image url="@../../../360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="wycieczkaLabel" layoutX="105.0" layoutY="195.0" text="WycieczkaNazwa" />
+                  <Label fx:id="nazwaLabel2" layoutX="105.0" layoutY="195.0" text="WycieczkaNazwa" />
                   <TextFlow fx:id="descriptionFlow" layoutX="51.0" layoutY="230.0" prefHeight="349.0" prefWidth="200.0" />
                </children>
             </AnchorPane>
@@ -40,19 +40,19 @@
                         <Font size="23.0" />
                      </font>
                   </Label>
-                  <Button layoutX="172.0" layoutY="536.0" mnemonicParsing="false" text="Reserve" />
+                  <Button layoutX="172.0" layoutY="536.0" mnemonicParsing="false" onAction="#purchaseWycieczka" text="Reserve" />
                   <Label layoutY="129.0" text="Nazwa wycieczki:" textAlignment="RIGHT" />
                   <Label layoutY="166.0" text="Data Wyjazdu:" />
                   <Label layoutY="201.0" text="Data przyjazdu:" />
-                  <Label layoutX="172.0" layoutY="129.0" text="Label" />
-                  <Label layoutX="172.0" layoutY="166.0" text="Label" />
-                  <Label layoutX="172.0" layoutY="201.0" text="Label" />
+                  <Label fx:id="nazwaLabel" layoutX="172.0" layoutY="129.0" text="Label" />
+                  <Label fx:id="rozpoczecieLabel" layoutX="172.0" layoutY="166.0" text="Label" />
+                  <Label fx:id="zakonczenieLabel" layoutX="172.0" layoutY="201.0" text="Label" />
                   <Label layoutX="17.0" layoutY="407.0" text="Cena:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="172.0" layoutY="416.0" text="Label" />
+                  <Label fx:id="cenaLabel" layoutX="172.0" layoutY="416.0" text="Label" />
                   <Button layoutX="20.0" layoutY="536.0" mnemonicParsing="false" onAction="#ReturntoPulpit" text="Return" />
                </children>
             </AnchorPane>
