@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -49,6 +50,18 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
 
     @FXML
     private Label Stegna;
+    @FXML
+    private Button button1;
+    @FXML
+    private Button button2;
+    @FXML
+    private Button button3;
+    @FXML
+    private Button button4;
+    @FXML
+    private Button button5;
+    @FXML
+    private Button button6;
 
 
     /**
@@ -81,6 +94,16 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     public String getParts(){
         return parts;
     }
+
+    public void setNazwaWycieczki(String nazwa)
+    {
+        this.nazwa = nazwa;
+    }
+
+    public String getNazwaWycieczki(){return nazwa;}
+
+//    public void setPoczatekWycieczki(String )
+
 
     /**
      * Metoda przełączająca scenę na ekran logowania.
@@ -176,6 +199,75 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         poczatekWycieczki.setText(" ");
         koniecWycieczki.setText(" ");
     }
+
+
+    public void addToBasket(ActionEvent e) throws  IOException
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Basket.fxml"));
+        Parent root = loader.load();
+        BasketController basketController = loader.getController();
+
+        //userProfileController.setPassword(password);
+       // System.out.println("Login wyslany"+login);
+      //  System.out.println("Haslo wyslane"+password);
+      //  String parts = connectionManager.getProfileData(login,password);
+      //  userProfileController.setParts(parts);
+        Button button = (Button) e.getSource();
+        if(button.getId().equals("button1"))
+        {
+            idWycieczka =1;
+            //wysylamy nazwe wycieczki
+            //wysylamy zdjecie
+            //wysylamy cene
+            //wysylamy opis
+            //date rozpoczecia
+            //date zakonczenia
+            getDaneWycieczka();
+
+        }
+        else if(button.getId().equals("button2"))
+        {
+            idWycieczka = 2;
+            getDaneWycieczka();
+
+        }
+        else if(button.getId().equals("button3"))
+        {
+            idWycieczka =3;
+            getDaneWycieczka();
+        }
+        else if(button.getId().equals("button4"))
+        {
+            idWycieczka=4;
+            getDaneWycieczka();
+        }
+        else if(button.getId().equals("button5"))
+        {
+            idWycieczka=5;
+            getDaneWycieczka();
+        }
+        else if(button.getId().equals("button6"))
+        {
+            idWycieczka=6;
+            getDaneWycieczka();
+        }
+        nazwa = wycieczkaTab[1];
+        dataRozpoczecia = wycieczkaTab[2];
+        dataZakonczenia=wycieczkaTab[3];
+        basketController.setLogin(login);
+        basketController.setNazwaWycieczki(nazwa);
+//        basketController.set
+        basketController.initialize(null, null); // Manually call the initialize method
+
+
+        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+        scene = stage.getScene();
+        scene.setRoot(root);
+        stage.show();
+
+
+    }
+
 
     /**
      *  Metoda inicjalizująca kontroler. Ustawia obiekt ConnectionManager, wywołuje metody printLogin() i printPassword()

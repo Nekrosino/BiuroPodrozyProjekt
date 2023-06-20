@@ -41,6 +41,7 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField EmailField;
 
+
     private String Login;
     private String Password;
     private String RepeatPassword;
@@ -66,25 +67,51 @@ public class RegisterController implements Initializable {
     public void switchToLoginScene(ActionEvent e) throws IOException {
 
         fillForm();
-        getID();
-        System.out.println("Otrzymane id "+idKlient);
-        if(Password.equals(RepeatPassword))
-        {
-            System.out.println("Pomyślnie zatwierdzono");
-            System.out.println("Wypelnione dane: "+idKlient+" " + Name + " " + Surname + " " + Adres + " " + Phone + " " + Login + " " + Password + " " + Email);
-            connectionManager.registerUser(idKlient,Name,Surname,Adres,Phone,Email,Login,Password,"99999.9");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("BiuroPodróży.fxml"));
-        Parent root = loader.load();
-        BiuroPodrozyController biuroPodrozyController = loader.getController();
 
-        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        scene = stage.getScene();
-        scene.setRoot(root);
-        stage.show();
+
+        if (!Name.isEmpty() && !Surname.isEmpty() && !Login.isEmpty() && !Password.isEmpty() && !RepeatPassword.isEmpty() && !Phone.isEmpty() && !Adres.isEmpty() && !Email.isEmpty())
+        {
+            if (Password.equals(RepeatPassword))
+            {
+                if (Phone.matches("\\d{9}"))
+                {
+                    if(Email.contains("@"))
+                    {
+                        getID();
+                        System.out.println("Otrzymane id " + idKlient);
+                        System.out.println("Pomyślnie zatwierdzono");
+                        System.out.println("Wypelnione dane: " + idKlient + " " + Name + " " + Surname + " " + Adres + " " + Phone + " " + Login + " " + Password + " " + Email);
+                        String registrationResult = connectionManager.registerUser(idKlient, Name, Surname, Adres, Phone, Email, Login, Password, "99999.9");
+                        if(registrationResult.equals("SUCCESS")) {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("BiuroPodróży.fxml"));
+                            Parent root = loader.load();
+                            BiuroPodrozyController biuroPodrozyController = loader.getController();
+
+                            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                            scene = stage.getScene();
+                            scene.setRoot(root);
+                            stage.show();
+                        }
+                        else
+                        {
+                            System.out.println("Nazwa uzytkownika w uzyciu");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Podaj adres e-mail");
+                    }
+                }
+                else System.out.println("Numer telefonu musi mieć dokładnie 9 cyfr");
+            }
+            else
+            {
+                System.out.println("Hasla sie roznia!");
+            }
         }
         else
         {
-            System.out.println("Hasla sie roznia!");
+            System.out.println("Wypełnij wszystkie pola!");
         }
     }
 

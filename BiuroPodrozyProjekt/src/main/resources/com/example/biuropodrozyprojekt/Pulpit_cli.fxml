@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="900.0" maxWidth="1200.0" minHeight="599.0" minWidth="798.0" prefHeight="599.0" prefWidth="798.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.PulpitController">
+<AnchorPane maxHeight="900.0" maxWidth="1200.0" minHeight="599.0" minWidth="798.0" prefHeight="599.0" prefWidth="798.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biuropodrozyprojekt.PulpitController">
    <children>
       <VBox fx:id="LPanelVbox" prefHeight="600.0" prefWidth="250.0" styleClass="Background" stylesheets="@style.css">
          <children>
@@ -69,15 +69,15 @@
                         <Image url="@../../../plaza.jpg" />
                      </image>
                   </ImageView>
-                  <Button layoutX="54.0" layoutY="180.0" mnemonicParsing="false" text="Add to basket" />
-                  <Button layoutX="212.0" layoutY="180.0" mnemonicParsing="false" text="Add to basket" />
-                  <Button layoutX="376.0" layoutY="180.0" mnemonicParsing="false" text="Add to basket" />
-                  <Button layoutX="54.0" layoutY="414.0" mnemonicParsing="false" text="Add to basket" />
-                  <Button layoutX="226.0" layoutY="414.0" mnemonicParsing="false" text="Add to basket" />
-                  <Button layoutX="393.0" layoutY="414.0" mnemonicParsing="false" text="Add to basket" />
+                  <Button fx:id="button1" layoutX="54.0" layoutY="180.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
+                  <Button fx:id="button2" layoutX="212.0" layoutY="180.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
+                  <Button fx:id="button3" layoutX="376.0" layoutY="180.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
+                  <Button fx:id="button4" layoutX="54.0" layoutY="414.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
+                  <Button fx:id="button5" layoutX="226.0" layoutY="414.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
+                  <Button fx:id="button6" layoutX="393.0" layoutY="414.0" mnemonicParsing="false" onAction="#addToBasket" text="Add to basket" />
                   <Label alignment="CENTER" layoutX="203.0" layoutY="155.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
                   <Label alignment="CENTER" layoutX="367.0" layoutY="155.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
-                  <Label alignment="CENTER" layoutX="53.0" layoutY="390.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
+                  <Label alignment="CENTER" layoutX="45.0" layoutY="391.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
                   <Label alignment="CENTER" layoutX="218.0" layoutY="387.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
                   <Label alignment="CENTER" layoutX="386.0" layoutY="391.0" prefHeight="17.0" prefWidth="117.0" text="Stegna" />
                   <Label fx:id="nazwaWycieczki" layoutX="37.0" layoutY="474.0" prefHeight="31.0" prefWidth="150.0" />

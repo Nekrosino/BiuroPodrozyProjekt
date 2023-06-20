@@ -124,7 +124,7 @@ public class ConnectionManager {
      * @param portfel Portfel podany przez użytkownika
      * @throws IOException
      */
-    public void registerUser(String idKlient,String Imie,String Nazwisko,String Adres,String Numer,String email,String login,String haslo,String portfel ) throws IOException
+    public String registerUser(String idKlient,String Imie,String Nazwisko,String Adres,String Numer,String email,String login,String haslo,String portfel ) throws IOException
     {
         clientSockett = new Socket("localhost", 1234);
         out = new PrintWriter(clientSockett.getOutputStream(), true);
@@ -132,6 +132,19 @@ public class ConnectionManager {
         //wyslanie żądania
         out.println("REGISTERUSER "+idKlient+" "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel);
         System.out.println("Dane uzytkownika do rejestracji: "+idKlient+" "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel );
+        String response = in.readLine();
+        if(response.startsWith("REGISTERSUCCESS"))
+        {
+            return "SUCCESS";
+        }
+        else if (response.startsWith("REGISTERFAILED"))
+        {
+            return  "FAILED";
+        }
+        else
+        {
+            return "FAILED";
+        }
 
 
     }
@@ -170,7 +183,6 @@ public class ConnectionManager {
         out.println("GETWYCIECZKA " + idwycieczki);
 
         String response = in.readLine();
-        // Jeżeli logowanie powiodło się, otrzymujemy identyfikator sesji
         if (response.startsWith("GETWYCIECZKA")) {
             String parts = response;
             System.out.println("Otrzymano pomyślnie dane dla użytkownika: "+parts);
