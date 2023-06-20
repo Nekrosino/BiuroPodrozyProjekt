@@ -205,5 +205,10 @@ public class ConnectionManager {
         out.println("BUYWYCIECZKA "+idklienta+" "+idwycieczki+" "+data_rezerwacji);
 
     }
+    public void paymentWycieczka(String cena, String login) throws IOException{
+        clientSockett = new Socket("localhost", 1234);
+        out = new PrintWriter(clientSockett.getOutputStream(), true);
+        out.println("PAYMENT "+cena+" "+login);
+    }
     // Pozostałe metody związane z połączeniem
 }

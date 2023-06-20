@@ -79,6 +79,7 @@ public class BasketController extends PulpitController implements Initializable{
         splitdata();
         idWycieczka=getIDwycieczka();
         connectionManager.buyWycieczka(userID,idWycieczka,formattedDate);
+        connectionManager.paymentWycieczka(cenaWycieczka,login);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Pulpit_cli.fxml"));
         Parent root = loader.load();
         PulpitController pulpitController = loader.getController();
