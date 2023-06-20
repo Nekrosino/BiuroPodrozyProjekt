@@ -124,16 +124,37 @@ public class ConnectionManager {
      * @param portfel Portfel podany przez użytkownika
      * @throws IOException
      */
-    public void registerUser(String Imie,String Nazwisko,String Adres,String Numer,String email,String login,String haslo,String portfel ) throws IOException
+    public void registerUser(String idKlient,String Imie,String Nazwisko,String Adres,String Numer,String email,String login,String haslo,String portfel ) throws IOException
     {
         clientSockett = new Socket("localhost", 1234);
         out = new PrintWriter(clientSockett.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
         //wyslanie żądania
-        out.println("REGISTERUSER "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel);
-        System.out.println("Dane uzytkownika do rejestracji: "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel );
+        out.println("REGISTERUSER "+idKlient+" "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel);
+        System.out.println("Dane uzytkownika do rejestracji: "+idKlient+" "+Imie+" "+Nazwisko+" "+Adres+" "+Numer+" "+email+" "+login+" "+haslo+" "+portfel );
 
 
+    }
+
+    public String getLastID() throws IOException {
+        clientSockett = new Socket("localhost", 1234);
+        in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
+        out = new PrintWriter(clientSockett.getOutputStream(), true);
+
+        out.println("GETLASTID ");
+
+        String response = in.readLine();
+        if(response.startsWith("GETLASTID"))
+        {
+            String[] parts = response.split(" ");
+            String lastID = parts[1];
+            System.out.println("Ostatnie IDMANAGER "+lastID);
+            return lastID;
+        }
+        else{
+            System.out.println("Błąd pobrania danych");
+            return null;
+        }
     }
 
     /**

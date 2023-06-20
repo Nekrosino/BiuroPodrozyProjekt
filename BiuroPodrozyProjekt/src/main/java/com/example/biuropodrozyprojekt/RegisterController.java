@@ -49,7 +49,13 @@ public class RegisterController implements Initializable {
     private String Phone;
     private String Adres;
     private String Email;
+    private String idKlient;
 
+
+    public void getID() throws IOException {
+        idKlient = connectionManager.getLastID();
+        System.out.println("ID "+idKlient);
+    }
     /**
      *  Metoda obsługująca przycisk przejścia do ekranu logowania. Sprawdza poprawność wprowadzonych danych rejestracyjnych,
      *  następnie wywołuje metodę registerUser() z ConnectionManager w celu zarejestrowania użytkownika.
@@ -60,15 +66,16 @@ public class RegisterController implements Initializable {
     public void switchToLoginScene(ActionEvent e) throws IOException {
 
         fillForm();
+        getID();
+        System.out.println("Otrzymane id "+idKlient);
         if(Password.equals(RepeatPassword))
         {
             System.out.println("Pomyślnie zatwierdzono");
-            System.out.println("Wypelnione dane: " + Name + " " + Surname + " " + Adres + " " + Phone + " " + Login + " " + Password + " " + Email);
+            System.out.println("Wypelnione dane: "+idKlient+" " + Name + " " + Surname + " " + Adres + " " + Phone + " " + Login + " " + Password + " " + Email);
+            connectionManager.registerUser(idKlient,Name,Surname,Adres,Phone,Email,Login,Password,"99999.9");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("BiuroPodróży.fxml"));
         Parent root = loader.load();
         BiuroPodrozyController biuroPodrozyController = loader.getController();
-        connectionManager.registerUser(Name,Surname,Adres,Phone,Email,Login,Password,"99999.9");
-
 
         stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         scene = stage.getScene();
@@ -123,5 +130,6 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        connectionManager = new ConnectionManager();
     }
 }
