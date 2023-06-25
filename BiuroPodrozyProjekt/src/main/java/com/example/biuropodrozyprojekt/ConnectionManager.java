@@ -16,6 +16,8 @@ public class ConnectionManager {
     private BufferedReader in;
     private String data;
 
+    private String saldo;
+
     /**
      *  Metoda nawiązuje połączenie z serwerem, wysyła żądanie logowania z danymi użytkownika (login i hasło) i odbiera odpowiedź od serwera
      * @param login login wpisany przez użytkownika
@@ -98,7 +100,6 @@ public class ConnectionManager {
             out.println("PROFILEDATA " + login);
 //        System.out.println("Wysłane dane: " + login + " " + password);
          System.out.println("Wysłane dane: " + login);
-
 
 
 
@@ -203,8 +204,8 @@ public class ConnectionManager {
         out = new PrintWriter(clientSockett.getOutputStream(), true);
        // in = new BufferedReader(new InputStreamReader(clientSockett.getInputStream()));
         out.println("BUYWYCIECZKA "+idklienta+" "+idwycieczki+" "+data_rezerwacji);
-
     }
+
     public void paymentWycieczka(String cena, String login) throws IOException{
         clientSockett = new Socket("localhost", 1234);
         out = new PrintWriter(clientSockett.getOutputStream(), true);

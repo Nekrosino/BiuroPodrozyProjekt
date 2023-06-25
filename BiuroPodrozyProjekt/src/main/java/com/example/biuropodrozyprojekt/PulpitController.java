@@ -50,6 +50,8 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
     public String dataZakonczenia;
     public String cenaWycieczka;
 
+    public String ubezpieczenieWycieczka; //dodane
+
     @FXML
     private Label Stegna;
     @FXML
@@ -145,6 +147,15 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         return idWycieczka;
     }
 
+    public void setUbezpieczenie(String ubezpieczenieWycieczka){ ///DODANE
+        this.ubezpieczenieWycieczka = ubezpieczenieWycieczka;
+    }
+
+    public String getUbezpieczenieWycieczka(){   ///DODANE
+        return ubezpieczenieWycieczka;
+    }
+
+
 
     /**
      * Metoda przełączająca scenę na ekran logowania.
@@ -236,6 +247,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
      * @param e obsługa zdarzenia
      * @throws IOException
      */
+
     public void dprint(MouseEvent e) throws IOException{
         nazwaWycieczki.setText(" ");
         poczatekWycieczki.setText(" ");
@@ -298,6 +310,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         dataRozpoczecia = wycieczkaTab[2];
         dataZakonczenia=wycieczkaTab[3];
         cenaWycieczka=wycieczkaTab[4];
+        ubezpieczenieWycieczka=wycieczkaTab[5];
 
         basketController.setLogin(login);
         basketController.setNazwaWycieczki(nazwa);
@@ -305,6 +318,7 @@ public class PulpitController extends BiuroPodrozyController implements Initiali
         basketController.setDataZakonczenia(dataZakonczenia);
         basketController.setCenaWycieczka(cenaWycieczka);
        basketController.setIDwycieczka(idWycieczka);
+       basketController.setUbezpieczenie(ubezpieczenieWycieczka);
         basketController.initialize(null, null); // Manually call the initialize method
 
 

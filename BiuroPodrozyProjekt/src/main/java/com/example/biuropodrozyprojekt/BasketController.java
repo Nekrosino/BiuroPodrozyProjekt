@@ -43,6 +43,9 @@ public class BasketController extends PulpitController implements Initializable{
     private String userNameText;
    private String  userSurnameText;
 
+
+   private String ubezpieczenie; //dodane
+
     private String parts;
     @FXML
     private Label zakonczenieLabel;
@@ -55,6 +58,11 @@ public class BasketController extends PulpitController implements Initializable{
     @FXML
     private Label cenaLabel;
 
+    @FXML
+    private Label ubezpieczenieLabel;
+
+    @FXML
+    private Label brakSrodkow;
 
 
     Text opis = new Text( "Wycieczka do Stegny to niezapomniane doświadczenie, które łączy piękno natury i bogatą historię tego malowniczego miejsca.\n" +
@@ -81,6 +89,13 @@ public class BasketController extends PulpitController implements Initializable{
              "Husavik, malownicze miasteczko położone na północy Islandii, jest prawdziwym rajem dla miłośników przyrody. Rozpocznij swoją przygodę od niezapomnianego rejsu na poszukiwanie wielorybów. Będziesz miał okazję zobaczyć te olbrzymie ssaki w ich naturalnym środowisku i doświadczyć niezwykłych emocji.");
 
 
+     Text podstawowy = new Text("Nasze podstawowe ubezpieczenie podróżne w biurze podróży zapewnia Ci spokój i bezpieczeństwo w trakcie podróży.\n" +
+             "Obejmuje ochronę bagażu, opóźnionych lotów, kosztów medycznych oraz możliwość rezygnacji z podróży w nagłych sytuacjach. \n" +
+             "Podróżuj z nami, wiedząc, że jesteś odpowiednio zabezpieczony.");
+
+    Text rozszerzony = new Text("Oprócz wszystkich korzyści oferowanych przez nasze podstawowe ubezpieczenie, nasze rozszerzenie dodatkowo chroni Cię przed stratami związanych z odwołaniem lub przekierowaniem lotów, utratą dokumentów podróży, zdarzeniami losowymi podczas aktywności turystycznych i wiele więcej.\n" +
+            "Z naszym rozszerzonym ubezpieczeniem, podróżujesz z pełnym spokojem, wiedząc, że jesteś w pełni zabezpieczony przed niespodziewanymi sytuacjami.");
+
    // Image image1 = new Image(getClass().getResource("/Images/plaza.jpg").toExternalForm());
 
     //String image1 = "@../../../plaza.jpg";
@@ -101,6 +116,9 @@ public class BasketController extends PulpitController implements Initializable{
     TextFlow descriptionFlow;
 
     @FXML
+    TextFlow ubezpiecznieFlow;
+
+    @FXML
     ImageView imageView;
 
 
@@ -118,21 +136,31 @@ public class BasketController extends PulpitController implements Initializable{
 
 
 
-    public void purchaseWycieczka(ActionEvent e) throws IOException{
+    public void purchaseWycieczka(ActionEvent e) throws IOException {
+
         parts = connectionManager.getProfileData(login);
         splitdata();
-        idWycieczka=getIDwycieczka();
-        connectionManager.buyWycieczka(userID,idWycieczka,formattedDate);
-        connectionManager.paymentWycieczka(cenaWycieczka,login);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Pulpit_cli.fxml"));
-        Parent root = loader.load();
-        PulpitController pulpitController = loader.getController();
-        pulpitController.setLogin(login);
-        pulpitController.initialize(null, null); // Manually call the initialize method
-        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        scene = stage.getScene();
-        scene.setRoot(root);
-        stage.show();
+        float saldoUserFloat = Float.parseFloat(userSaldoText);
+        float saldoWycieczkaFloat  = Float.parseFloat(cenaWycieczka);
+
+        if (saldoUserFloat >= saldoWycieczkaFloat) {
+            idWycieczka = getIDwycieczka();
+            connectionManager.buyWycieczka(userID, idWycieczka, formattedDate);
+            connectionManager.paymentWycieczka(cenaWycieczka, login);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Pulpit_cli.fxml"));
+            Parent root = loader.load();
+            PulpitController pulpitController = loader.getController();
+            pulpitController.setLogin(login);
+            pulpitController.initialize(null, null); // Manually call the initialize method
+            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = stage.getScene();
+            scene.setRoot(root);
+            stage.show();
+        }
+        else {
+            brakSrodkow.setText("BRAK WYSTARCZAJĄCYCH ŚRODKÓW NA KONCIE!");
+        }
+
     }
 
     public void splitdata() {
@@ -161,6 +189,7 @@ public class BasketController extends PulpitController implements Initializable{
         dataZakonczenia=getDataZakonczenia();
         cenaWycieczka=getCenaWycieczka();
         idWycieczka=getIDwycieczka();
+        ubezpieczenie=getUbezpieczenieWycieczka(); //ZMIENILEM
         descriptionFlow.getChildren().clear();
 
         if(idWycieczka == "1")
@@ -168,12 +197,15 @@ public class BasketController extends PulpitController implements Initializable{
             Image image = new Image(imagePath1);
             imageView.setImage(image);
             descriptionFlow.getChildren().add(opis);
+            ubezpiecznieFlow.getChildren().add(podstawowy);
+
         }
         else if(idWycieczka == "2")
         {
             Image image = new Image(imagePath2);
             imageView.setImage(image);
             descriptionFlow.getChildren().add(opis2);
+            ubezpiecznieFlow.getChildren().add(rozszerzony);
         }
 
         else if(idWycieczka == "3")
@@ -181,24 +213,28 @@ public class BasketController extends PulpitController implements Initializable{
             Image image = new Image(imagePath3);
             imageView.setImage(image);
             descriptionFlow.getChildren().add(opis3);
+            ubezpiecznieFlow.getChildren().add(rozszerzony);
         }
         else if(idWycieczka == "4")
         {
             Image image = new Image(imagePath4);
             imageView.setImage(image);
             descriptionFlow.getChildren().add(opis4);
+            ubezpiecznieFlow.getChildren().add(podstawowy);
         }
         else if(idWycieczka == "5")
         {
             Image image = new Image(imagePath5);
             imageView.setImage(image);
             descriptionFlow.getChildren().add(opis5);
+            ubezpiecznieFlow.getChildren().add(podstawowy);
         }
         else if(idWycieczka == "6")
         {
             Image image = new Image(imagePath6);
             imageView.setImage(image);
             descriptionFlow.getChildren().add(opis6);
+            ubezpiecznieFlow.getChildren().add(rozszerzony);
         }
 
 
@@ -208,7 +244,7 @@ public class BasketController extends PulpitController implements Initializable{
         rozpoczecieLabel.setText(dataRozpoczecia);
         zakonczenieLabel.setText(dataZakonczenia);
         cenaLabel.setText(cenaWycieczka);
-
+        ubezpieczenieLabel.setText(ubezpieczenie);
 
     }
 
